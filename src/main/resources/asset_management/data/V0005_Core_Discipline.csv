@@ -1,0 +1,49 @@
+id,discipline,description,active
+10,AR,Architectural,TRUE
+20,LA,Architectural - Landscaping,TRUE
+30,DU,Architectural - Urban Design,TRUE
+40,EW,Civil - Earthworks,TRUE
+50,FN,"Civil - Fencing, Barriers and Furniture",TRUE
+60,GD,Civil - Guidance & Delineation Systems,TRUE
+70,PV,Civil - Pavement,TRUE
+80,RW,Civil - Roadworks,TRUE
+90,SD,Civil - Stormwater Drainage,TRUE
+100,TF,Civil - TCS (Traffic Signals),TRUE
+110,CD,Communication - Data Communications Network,TRUE
+120,CO,Communication - General,TRUE
+130,PA,Communication - Public Address System,TRUE
+140,RR,Communication - Radio Systems,TRUE
+150,EB,Electrical - Earthing and Lighting Protection,TRUE
+160,LE,Electrical - Egress and Emergency Lighting,TRUE
+170,EL,Electrical - General,TRUE
+180,HV,Electrical - High Voltage Distribution,TRUE
+190,LT,Electrical - Lighting Systems,TRUE
+200,LV,Electrical - Low Voltage Distribution,TRUE
+210,PL,Electrical - PLCs & PMCS,TRUE
+220,FE,Fire - General,TRUE
+230,FD,Fire Detection System,TRUE
+240,FS,Fire Systems Suppression,TRUE
+250,GE,Geotechnical,TRUE
+260,HY,Hydraulic - General,TRUE
+270,AQ,Mechanical - Air Monitoring,TRUE
+280,ME,Mechanical - General,TRUE
+290,CP,Mechanical - Plant Monitoring and Control System,TRUE
+300,TV,Mechanical - Tunnel Ventilation,TRUE
+310,VA,Mechanical - Ventilation and Air Conditioning,TRUE
+320,BR,Structural - Bridge Structures,TRUE
+330,BS,Structural - Building Structures,TRUE
+340,CC,Structural - Cut and Cover,TRUE
+350,MS,Structural - Miscellaneous Structures,TRUE
+360,RS,Structural - Retaining Structures,TRUE
+370,TU,Structural - Tunnel Structures,TRUE
+380,TT,Technology - Intelligent Transport Systems,TRUE
+390,ID,Technology - Surveillance and Detection,TRUE
+400,TW,Temporary Works,TRUE
+410,UC,Utilities - Communications,TRUE
+420,UE,Utilities - Electricity,TRUE
+430,UG,Utilities - Gas,TRUE
+440,UT,Utilities - General,TRUE
+450,UI,Utilities - ITS,TRUE
+460,UP,Utilities - Petroleum products,TRUE
+470,US,Utilities - Sewer,TRUE
+480,UW,Utilities - Water,TRUE

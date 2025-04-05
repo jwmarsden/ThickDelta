@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+        <changeSet id="V0010" author="jwm">
+        <!--
+        Location Status Table
+        -->
+        <createSequence incrementBy="10"
+                        sequenceName="LOCATION_STATUS_ID_SEQ"
+                        startValue="100"/>
+        <createTable tableName="location_status">
+            <column name="id" type="bigint">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_location_status"/>
+            </column>
+            <column name="system_status" type="VARCHAR(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="status" type="VARCHAR(8)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="VARCHAR(50)"/>
+            <column name="active" type="bool" defaultValue="true">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="status"
+                              constraintName="location_status"
+                              deferrable="true"
+                              disabled="false"
+                              tableName="location_status"
+                              validate="true"/>
+        <loadData file="asset_management/data/V0010_Location_Status.csv" tableName="location_status"/>
+
+        <!--
+        Location Table
+        -->
+        <createSequence incrementBy="10" sequenceName="LOCATION_ID_SEQ" startValue="100"/>
+        <createTable tableName="LOCATION">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_location"/>
+            </column>
+            <column name="key" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(100)"/>
+            <column name="status" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discipline" type="VARCHAR"/>
+        </createTable>
+        <addUniqueConstraint columnNames="key"
+                             constraintName="uc_location_key"
+                             tableName="LOCATION"/>
+        <addForeignKeyConstraint baseColumnNames="discipline"
+                                 baseTableName="LOCATION"
+                                 constraintName="FK_LOCATION_ON_DISCIPLINE"
+                                 referencedColumnNames="discipline"
+                                 referencedTableName="DISCIPLINE"/>
+
+        <addForeignKeyConstraint baseColumnNames="status"
+                                 baseTableName="LOCATION"
+                                 constraintName="FK_LOCATION_ON_STATUS"
+                                 referencedColumnNames="status"
+                                 referencedTableName="LOCATION_STATUS"/>
+
+        <!--
+        Location System Hierarchy Table
+        -->
+        <createSequence incrementBy="10"
+                        sequenceName="LOCATION_SYSTEM_HIERARCHY_ID_SEQ"
+                        startValue="10"/>
+        <createTable tableName="LOCATION_SYSTEM_HIERARCHY">
+            <column name="id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_location_system_hierarchy"/>
+            </column>
+            <column name="system_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id"
+                    type="BIGINT">
+            </column>
+            <column name="location_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="system_id, parent_id, location_id"
+                             constraintName="LOCATION_SYSTEM_HIERARCHY_C01"
+                             tableName="LOCATION_SYSTEM_HIERARCHY"/>
+        <addForeignKeyConstraint baseColumnNames="location_id"
+                                 baseTableName="LOCATION_SYSTEM_HIERARCHY"
+                                 constraintName="FK_LOCATION_SYSTEM_HIERARCHY_ON_CHILD"
+                                 referencedColumnNames="id"
+                                 referencedTableName="LOCATION"/>
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="LOCATION_SYSTEM_HIERARCHY"
+                                 constraintName="FK_LOCATION_SYSTEM_HIERARCHY_ON_PARENT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="LOCATION"/>
+        <addForeignKeyConstraint baseColumnNames="system_id"
+                                 baseTableName="LOCATION_SYSTEM_HIERARCHY"
+                                 constraintName="FK_LOCATION_SYSTEM_HIERARCHY_ON_SYSTEM"
+                                 referencedColumnNames="id"
+                                 referencedTableName="SYSTEM"/>
+    </changeSet>
+
+
+</databaseChangeLog>

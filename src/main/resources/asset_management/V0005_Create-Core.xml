@@ -1,0 +1,65 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="V0005"
+               author="JWM">
+        <createSequence incrementBy="10"
+                        sequenceName="DISCIPLINE_ID_SEQ"/>
+        <createTable tableName="DISCIPLINE">
+            <column name="id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_discipline"/>
+            </column>
+            <column name="discipline"
+                    type="VARCHAR(3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description"
+                    type="VARCHAR(50)"/>
+            <column name="active"
+                    type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint columnNames="discipline"
+                             constraintName="uc_discipline_discipline"
+                             tableName="DISCIPLINE"/>
+        <loadData file="asset_management/data/V0005_Core_Discipline.csv" tableName="DISCIPLINE"/>
+
+        <createSequence incrementBy="10"
+                        sequenceName="SYSTEM_ID_SEQ"
+                        startValue="20"/>
+        <createTable tableName="SYSTEM">
+            <column name="id"
+                    type="BIGINT">
+                <constraints nullable="false"
+                             primaryKey="true"
+                             primaryKeyName="pk_system"/>
+            </column>
+            <column name="system"
+                    type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description"
+                    type="VARCHAR(20)"/>
+            <column name="graph"
+                    type="BOOLEAN"
+                    defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active"
+                    type="BOOLEAN"
+                    defaultValueBoolean="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData file="asset_management/data/V0005_Core_System.csv" tableName="SYSTEM"/>
+
+    </changeSet>
+
+</databaseChangeLog>
