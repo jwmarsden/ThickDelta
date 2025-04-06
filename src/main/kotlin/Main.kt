@@ -1,13 +1,23 @@
 package com.ventia
 
+import com.ventia.controller.AssetController
 import com.ventia.entities.*
+import com.ventia.gui.MainFrame
+import com.ventia.gui.asset.AssetHierarchyView
+import com.ventia.model.AssetModel
 import liquibase.util.LiquibaseUtil
 import org.hibernate.Session
+import org.hibernate.SessionFactory
 import org.hibernate.cfg.Configuration
 import org.hibernate.cfg.JdbcSettings.*
+import java.awt.BorderLayout
+import java.awt.Dimension
+import java.awt.event.WindowAdapter
+import java.awt.event.WindowEvent
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.Statement
+import javax.swing.JOptionPane
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -21,7 +31,7 @@ fun main() {
 
     println(LiquibaseUtil.getBuildVersionInfo())
 
-    val sessionFactory = Configuration()
+    val sessionFactory: SessionFactory = Configuration()
         .addAnnotatedClass(DisciplineEntity::class.java)
         .addAnnotatedClass(SystemEntity::class.java)
         .addAnnotatedClass(LocationStatusEntity::class.java)
@@ -48,7 +58,7 @@ fun main() {
 
     sessionFactory.inSession({ session: Session ->
         val parentLocation = session
-            .createSelectionQuery("from LocationEntity where key = '04500'", LocationEntity::class.java)
+            .createSelectionQuery("from LocationEntity where key = '12345'", LocationEntity::class.java)
             .singleResult
         println("Location: $parentLocation")
         val children = parentLocation.children
@@ -60,6 +70,22 @@ fun main() {
 
     })
 
-    sessionFactory.close()
 
+
+    val frame: MainFrame = MainFrame()
+    frame.title = "Ventia: T2D AMIS Validation Tool"
+    frame.size = Dimension(800, 600)
+    frame.addWindowListener(object : WindowAdapter() {
+        override fun windowClosing(e: WindowEvent) {
+            sessionFactory.close()
+            System.exit(0)
+        }
+    })
+
+    val assetModel: AssetModel = AssetModel(sessionFactory)
+    val assetController: AssetController = AssetController(assetModel)
+    val assetHierarchyView = AssetHierarchyView(assetController)
+
+    frame.add(assetHierarchyView, BorderLayout.CENTER)
+    frame.isVisible = true
 }

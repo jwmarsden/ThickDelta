@@ -26,7 +26,7 @@ data class LocationEntity (
     val discipline: DisciplineEntity? = null,
 
     @ManyToMany(mappedBy = "children", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val parents: Set<LocationEntity> = mutableSetOf(),
+    val parents: List<LocationEntity> = mutableListOf(),
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
@@ -34,7 +34,7 @@ data class LocationEntity (
         joinColumns = [JoinColumn(name = "parent_id")],
         inverseJoinColumns = [JoinColumn(name = "location_id")],
     )
-    val children: Set<LocationEntity> = setOf(),
+    val children: List<LocationEntity> = mutableListOf(),
 
     ) {
 
