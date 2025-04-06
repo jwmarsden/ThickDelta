@@ -2,12 +2,15 @@ package com.ventia.gui.asset
 
 import com.ventia.controller.AssetController
 import com.ventia.entities.LocationEntity
+import java.net.URL
+import javax.swing.Icon
+import javax.swing.ImageIcon
 import javax.swing.event.TreeModelListener
 import javax.swing.tree.DefaultMutableTreeNode
-import javax.swing.tree.DefaultTreeModel
 import javax.swing.tree.TreeModel
 import javax.swing.tree.TreeNode
 import javax.swing.tree.TreePath
+
 
 class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) : TreeModel {
     var roots: MutableList<LocationEntity>? = null
@@ -34,7 +37,10 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
     override fun getChild(parent: Any?, index: Int): AssetTreeViewNode? {
         if (parent is AssetTreeViewNode) {
             val parentLocation: LocationEntity = (parent as AssetTreeViewNode).userObject as LocationEntity
-            return AssetTreeViewNode(parentLocation.children.get(index), true)
+
+            val node = AssetTreeViewNode(parentLocation.children[index], true)
+
+            return node
         }
         if (parent is DefaultMutableTreeNode) {
             return AssetTreeViewNode(roots?.get(index), true)

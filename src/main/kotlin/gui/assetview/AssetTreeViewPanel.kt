@@ -5,16 +5,15 @@ import com.ventia.intent.Intent
 import com.ventia.intent.IntentHub
 import com.ventia.intent.IntentReceiver
 import com.ventia.intent.PingIntent
-import java.awt.BorderLayout
-import java.awt.Color
-import java.awt.Font
-import javax.swing.JPanel
-import javax.swing.JScrollPane
-import javax.swing.JTree
+import java.awt.*
+import java.net.URL
+import javax.swing.*
 import javax.swing.border.EmptyBorder
 import javax.swing.event.TreeSelectionEvent
 import javax.swing.event.TreeSelectionListener
 import javax.swing.tree.DefaultMutableTreeNode
+import javax.swing.tree.DefaultTreeCellRenderer
+import javax.swing.tree.TreeCellRenderer
 import javax.swing.tree.TreeSelectionModel
 
 
@@ -35,9 +34,11 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         tree!!.isRootVisible = false
         tree!!.selectionModel.selectionMode = TreeSelectionModel.SINGLE_TREE_SELECTION
         tree!!.border = EmptyBorder(4, 0, 4, 0)
-        tree!!.font = Font(Font.MONOSPACED, Font.PLAIN, 10)
+        tree!!.font = Font(Font.MONOSPACED, Font.PLAIN, 12)
         tree!!.addTreeSelectionListener(this);
 
+
+        tree!!.cellRenderer = DefaultTreeCellRenderer()
 
 
         val treeView = JScrollPane(tree)
@@ -46,6 +47,31 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         add(treeView, BorderLayout.CENTER)
 
         IntentHub.lookup().registerForIntent(this, PingIntent::class.java)
+    }
+
+
+    class AssetTreeCellRenderer : TreeCellRenderer {
+        override fun getTreeCellRendererComponent(
+            tree: JTree?,
+            value: Any?,
+            selected: Boolean,
+            expanded: Boolean,
+            leaf: Boolean,
+            row: Int,
+            hasFocus: Boolean
+        ): Component {
+
+            val roadURL: URL? = this::class.java.getResource("/image/icon-road.png")
+
+
+            val imageIcon: ImageIcon = ImageIcon(ImageIcon(roadURL).image.getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+
+
+
+
+            return JLabel(imageIcon)
+        }
+
     }
 
 
