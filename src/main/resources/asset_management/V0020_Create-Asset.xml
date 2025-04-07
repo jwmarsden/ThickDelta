@@ -9,6 +9,9 @@
         <!--
         Asset Status Table
         -->
+        <createSequence incrementBy="10"
+                        sequenceName="ASSET_STATUS_ID_SEQ"
+                        startValue="100"/>
         <createTable tableName="asset_status">
             <column name="id" type="bigint">
                 <constraints nullable="false"
@@ -62,6 +65,10 @@
         <!--
         Asset Table
         -->
+        <createSequence incrementBy="10"
+                        sequenceName="ASSET_ID_SEQ"
+                        startValue="100"/>
+
         <createTable tableName="asset">
             <column name="id" type="bigint">
                 <constraints nullable="false"
@@ -78,8 +85,11 @@
             <column name="status" type="VARCHAR(8)">
                 <constraints nullable="false" />
             </column>
-            <column name="parent_id" type="int"/>
-            <column name="location_id" type="int"/>
+            <column name="linear"
+                    type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="VARCHAR(12)"/>
         </createTable>
         <addForeignKeyConstraint  baseColumnNames="type"
                                   baseTableName="asset"
@@ -93,18 +103,13 @@
                                   referencedColumnNames="status"
                                   referencedTableName="asset_status"
                                   validate="true"/>
-        <addForeignKeyConstraint  baseColumnNames="parent_id"
-                                  baseTableName="asset"
-                                  constraintName="fk_asset_parent"
-                                  referencedColumnNames="id"
-                                  referencedTableName="asset"
-                                  validate="true"/>
-        <addForeignKeyConstraint  baseColumnNames="location_id"
-                                  baseTableName="asset"
-                                  constraintName="fk_asset_location"
-                                  referencedColumnNames="id"
-                                  referencedTableName="location"
-                                  validate="true"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="location"
+                                 baseTableName="ASSET"
+                                 constraintName="FK_ASSET_ON_LOCATION"
+                                 referencedColumnNames="key"
+                                 referencedTableName="LOCATION"/>
     </changeSet>
 
 </databaseChangeLog>

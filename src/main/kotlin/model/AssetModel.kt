@@ -8,12 +8,13 @@ import java.util.*
 
 class AssetModel(sessionFactory: SessionFactory) : Model(sessionFactory) {
 
+    private var loaded: Boolean = false
     private val rootLocationIdentifiers = arrayOf("T2D")
-    private var rootsLocations: MutableList<LocationEntity>? = null
+    private var rootsLocations: MutableList<LocationEntity> = mutableListOf()
 
-    fun lookupLocationRoots(): MutableList<LocationEntity>? {
+    fun lookupLocationRoots(): MutableList<LocationEntity> {
         val session = sessionFactory.openSession()
-        if (rootsLocations != null) {
+        if (loaded) {
             return rootsLocations
         } else {
             rootsLocations = mutableListOf()
@@ -26,8 +27,9 @@ class AssetModel(sessionFactory: SessionFactory) : Model(sessionFactory) {
             val query: Query<LocationEntity> = session.createQuery("from LocationEntity as location where location.key in ($inValue)", LocationEntity::class.java)
             val rootLocationEntities: List<LocationEntity> = query.list()
             for (loc in rootLocationEntities) {
-                rootsLocations!!.add(loc)
+                rootsLocations.add(loc)
             }
+            loaded = true
             return rootsLocations
         }
     }

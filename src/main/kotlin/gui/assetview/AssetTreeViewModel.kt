@@ -21,37 +21,65 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
     }
 
     override fun getChildCount(parent: Any?): Int {
-        val genericNode: TreeNode = parent as TreeNode;
+        //val genericNode: TreeNode = parent as TreeNode;
 
         if (parent is AssetTreeViewNode) {
-            val parentLocation: LocationEntity = (parent as AssetTreeViewNode).userObject as LocationEntity
-            return parentLocation.children.size
+            if(parent.type == AssetTreeNodeType.LOCATION) {
+                val nodeLocation: LocationEntity = parent.userObject as LocationEntity
+                return nodeLocation.children.size + nodeLocation.assets.size
+            } else if (parent.type == AssetTreeNodeType.ASSET) {
+                return 0
+            } else if (parent.type == AssetTreeNodeType.ROOT) {
+                return roots!!.size
+            }
+
         }
-        if (parent is DefaultMutableTreeNode) {
-            return roots!!.size
-        }
+
 
         return 0
     }
 
     override fun getChild(parent: Any?, index: Int): AssetTreeViewNode? {
         if (parent is AssetTreeViewNode) {
-            val parentLocation: LocationEntity = (parent as AssetTreeViewNode).userObject as LocationEntity
+            if(parent.type == AssetTreeNodeType.LOCATION) {
+                val parentLocation: LocationEntity = (parent as AssetTreeViewNode).userObject as LocationEntity
 
-            val node = AssetTreeViewNode(parentLocation.children[index], true)
+                val assetsSize = parentLocation.assets.size
+                val childrenSize = parentLocation.children.size
 
-            return node
+
+                val node: AssetTreeViewNode = if(index < assetsSize) {
+                    AssetTreeViewNode(AssetTreeNodeType.ASSET, parentLocation.assets[index], true)
+                } else if (index < childrenSize+assetsSize) {
+                    AssetTreeViewNode(AssetTreeNodeType.LOCATION, parentLocation.children[index-assetsSize], true)
+                } else {
+                    AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
+                }
+
+                return node
+            } else if (parent.type == AssetTreeNodeType.ASSET) {
+                return AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
+            } else if (parent.type == AssetTreeNodeType.ROOT) {
+                return AssetTreeViewNode(AssetTreeNodeType.LOCATION, roots?.get(index), true)
+            }
         }
-        if (parent is DefaultMutableTreeNode) {
-            return AssetTreeViewNode(roots?.get(index), true)
-        }
-        return AssetTreeViewNode("Not found", true)
+
+        return AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
     }
 
     override fun isLeaf(node: Any?): Boolean {
         if (node is AssetTreeViewNode) {
-            val nodeLocation: LocationEntity = (node as AssetTreeViewNode).userObject as LocationEntity
-            return nodeLocation.children.isEmpty()
+            val isLeaf = if(node.type == AssetTreeNodeType.LOCATION) {
+                val nodeLocation: LocationEntity = node.userObject as LocationEntity
+                nodeLocation.children.isEmpty() && nodeLocation.assets.isEmpty()
+            } else if (node.type == AssetTreeNodeType.ASSET) {
+                true
+            } else if (node.type == AssetTreeNodeType.ROOT) {
+                false
+            } else {
+                true
+            }
+            return isLeaf
         }
         if (node is DefaultMutableTreeNode) {
             return false
@@ -86,10 +114,10 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
         } else {
             treeNodes = mutableMapOf()
         }
-        val locationRoots = controller.lookupLocationRoots();
-        for (root in locationRoots!!) {
+        val locationRoots: MutableList<LocationEntity> = controller.lookupLocationRoots();
+        for (root in locationRoots) {
             roots!!.add(root)
-            treeNodes!![root] = AssetTreeViewNode(root, true)
+            treeNodes!![root] = AssetTreeViewNode(AssetTreeNodeType.LOCATION, root, true)
         }
         print("Roots: $locationRoots")
     }

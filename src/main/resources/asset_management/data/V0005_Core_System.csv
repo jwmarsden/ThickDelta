@@ -1,2 +1,5 @@
 id,system,description,graph,active
 10,DEFAULT,Default System,false,true
+20,POWER,Power System,true,true
+30,COMMS,Communications System,true,true
+

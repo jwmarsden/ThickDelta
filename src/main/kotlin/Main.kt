@@ -2,6 +2,8 @@ package com.ventia
 
 import com.ventia.controller.AssetController
 import com.ventia.entities.*
+import com.ventia.entity.AssetEntity
+import com.ventia.entity.AssetStatusEntity
 import com.ventia.gui.MainFrame
 import com.ventia.gui.asset.AssetHierarchyView
 import com.ventia.model.AssetModel
@@ -37,6 +39,8 @@ fun main() {
         .addAnnotatedClass(LocationStatusEntity::class.java)
         .addAnnotatedClass(LocationEntity::class.java)
         .addAnnotatedClass(LocationSystemHierarchyEntity::class.java)
+        .addAnnotatedClass(AssetStatusEntity::class.java)
+        .addAnnotatedClass(AssetEntity::class.java)
         .setProperty(JAKARTA_JDBC_URL, "jdbc:hsqldb:file:target/dev/db")
         .setProperty(JAKARTA_JDBC_USER, "SA")
         .setProperty(JAKARTA_JDBC_PASSWORD, "") // use Agroal connection pool
@@ -58,7 +62,7 @@ fun main() {
 
     sessionFactory.inSession({ session: Session ->
         val parentLocation = session
-            .createSelectionQuery("from LocationEntity where key = '12345'", LocationEntity::class.java)
+            .createSelectionQuery("from LocationEntity where key = '6203'", LocationEntity::class.java)
             .singleResult
         println("Location: $parentLocation")
         val children = parentLocation.children
@@ -74,7 +78,7 @@ fun main() {
 
     val frame: MainFrame = MainFrame()
     frame.title = "Ventia: T2D AMIS Validation Tool"
-    frame.size = Dimension(800, 600)
+    frame.size = Dimension(1000, 800)
     frame.addWindowListener(object : WindowAdapter() {
         override fun windowClosing(e: WindowEvent) {
             sessionFactory.close()

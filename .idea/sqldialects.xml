@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/resources/development/V0010_Test-Location.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/development/V0010_Test-Location.sql" dialect="HSQLDB" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/development/V0010_Test-SiteId-Luminaries.sql" dialect="HSQLDB" />
     <file url="PROJECT" dialect="HSQLDB" />
+  </component>
+  <component name="SqlResolveMappings">
+    <file url="file://$PROJECT_DIR$/src/main/resources/development/V0010_Test-Location.sql" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;@negative&quot;:&quot;1&quot;   }  } }}" />
+    <file url="PROJECT" scope="{&quot;node&quot;:{  &quot;@negative&quot;:&quot;1&quot;,  &quot;group&quot;:{   &quot;@kind&quot;:&quot;root&quot;,   &quot;node&quot;:{    &quot;name&quot;:{     &quot;@qname&quot;:&quot;666f5e46-2f81-4b53-826f-05277f39a0d1&quot;    },    &quot;group&quot;:{     &quot;@kind&quot;:&quot;database&quot;,     &quot;node&quot;:{      &quot;name&quot;:{       &quot;@qname&quot;:&quot;PUBLIC&quot;      },      &quot;group&quot;:{       &quot;@kind&quot;:&quot;schema&quot;,       &quot;node&quot;:{        &quot;name&quot;:{         &quot;@qname&quot;:&quot;PUBLIC&quot;        }       }      }     }    }   }  } }}" />
   </component>
 </project>

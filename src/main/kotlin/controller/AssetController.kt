@@ -6,7 +6,7 @@ import com.ventia.model.Model
 
 class AssetController(override val model: AssetModel) : Controller(model) {
 
-    fun lookupLocationRoots(): MutableList<LocationEntity>? {
+    fun lookupLocationRoots(): MutableList<LocationEntity> {
         return model.lookupLocationRoots()
     }
 }

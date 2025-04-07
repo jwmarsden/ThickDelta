@@ -46,7 +46,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="description"
-                    type="VARCHAR(20)"/>
+                    type="VARCHAR(25)"/>
             <column name="graph"
                     type="BOOLEAN"
                     defaultValueBoolean="false">

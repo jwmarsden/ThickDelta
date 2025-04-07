@@ -1,6 +1,7 @@
 package com.ventia.gui.asset
 
 import com.ventia.controller.AssetController
+import com.ventia.gui.assetview.AssetTreeViewPanel
 import java.awt.*
 import java.net.URL
 import javax.swing.ImageIcon
@@ -18,7 +19,7 @@ class AssetHierarchyView(private val controller: AssetController): JPanel() {
 
         layout = BorderLayout()
 
-        splitPane.setDividerLocation(400)
+        splitPane.setDividerLocation(540)
         splitPane.setOneTouchExpandable(true)
         splitPane.setContinuousLayout(true)
 

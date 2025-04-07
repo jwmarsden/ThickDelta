@@ -1,5 +1,6 @@
 package com.ventia.entities
 
+import com.ventia.entity.AssetEntity
 import jakarta.persistence.*
 
 @Entity
@@ -12,7 +13,7 @@ data class LocationEntity (
     @Column(nullable = false)
     val id: Long = -1,
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 12)
     val key: String = "key",
 
     val description: String? = null,
@@ -36,6 +37,10 @@ data class LocationEntity (
     )
     val children: List<LocationEntity> = mutableListOf(),
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name="location", referencedColumnName = "key")
+    val assets: List<AssetEntity> = mutableListOf(),
+
     ) {
 
     override fun toString(): String {
@@ -55,10 +60,6 @@ data class LocationEntity (
         return key.hashCode()
     }
 
-    @Suppress("unused")
-    fun hasParent(@Suppress("UNUSED_PARAMETER") system: SystemEntity): Boolean {
-        return false
-    }
 
 
 }
