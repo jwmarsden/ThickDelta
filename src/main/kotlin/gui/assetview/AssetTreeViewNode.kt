@@ -16,7 +16,7 @@ class AssetTreeViewNode(val type: AssetTreeNodeType, userObject: Any?, allowsChi
             return "${locationObject.key} - ${locationObject.description}"
         } else if (type == AssetTreeNodeType.ASSET) {
             val assetObject = userObject as AssetEntity
-            return "${assetObject.key} - ${assetObject.description} (${assetObject.children.size})"
+            return "${assetObject.key} - ${assetObject.description}"
         } else if (type == AssetTreeNodeType.ROOT) {
             val locationObject = userObject as LocationEntity
             return "${locationObject.key} - ${locationObject.description}"

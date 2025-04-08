@@ -27,36 +27,16 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
     }
 
     override fun getChild(parent: Any?, index: Int): AssetTreeViewNode? {
-        if (parent is AssetTreeViewNode) {
-            if(parent.type == AssetTreeNodeType.LOCATION || parent.type == AssetTreeNodeType.ROOT) {
-                val parentLocation: LocationEntity = (parent as AssetTreeViewNode).userObject as LocationEntity
-                val assetsSize = parentLocation.assets.size
-                val childrenSize = parentLocation.children.size
-                val node: AssetTreeViewNode = if(index < assetsSize) {
-                    AssetTreeViewNode(AssetTreeNodeType.ASSET, parentLocation.assets[index], true)
-                } else if (index < childrenSize+assetsSize) {
-                    AssetTreeViewNode(AssetTreeNodeType.LOCATION, parentLocation.children[index-assetsSize], true)
-                } else {
-                    AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
-                }
-                return node
-            } else if (parent.type == AssetTreeNodeType.ASSET) {
-                return AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
-            }
-        } else if (parent is DefaultMutableTreeNode) {
-            return AssetTreeViewNode(AssetTreeNodeType.ROOT, roots?.get(index), true)
-        }
-
-        return AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
+        return getChild(parent as TreeNode, index)
     }
 
-    fun getChildCount(parent: TreeNode): Int {
+    private fun getChildCount(parent: TreeNode): Int {
         val size = if(parent is AssetTreeViewNode) {
             if (parent.userObject is LocationEntity) {
                 val parentLocation: LocationEntity = parent.userObject as LocationEntity
-                val assets = parentLocation.assets
+                val assets = parentLocation.getAssetsWithoutParent()
                 val children = parentLocation.children
-                assets.size + children.size
+                children.size + assets.size
             } else if (parent.userObject is AssetEntity) {
                 val parentAsset: AssetEntity = parent.userObject as AssetEntity
                 parentAsset.children.size
@@ -71,13 +51,44 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
         return size
     }
 
+    private fun getChild(parent: TreeNode, index: Int): AssetTreeViewNode {
+        if (parent is AssetTreeViewNode) {
+            if(parent.type == AssetTreeNodeType.LOCATION || parent.type == AssetTreeNodeType.ROOT) {
+                val parentLocation: LocationEntity = parent.userObject as LocationEntity
+                val assetChildren = parentLocation.getAssetsWithoutParent()
+                val locationChildren = parentLocation.children
+                val assetChildrenSize = assetChildren.size
+                val locationChildrenSize = locationChildren.size
+
+                val node: AssetTreeViewNode = if (assetChildren.isEmpty()) {
+                    AssetTreeViewNode(AssetTreeNodeType.LOCATION, locationChildren[index], true)
+                } else if (index < assetChildrenSize) {
+                    AssetTreeViewNode(AssetTreeNodeType.ASSET, assetChildren[index], true)
+                } else if (index < assetChildrenSize+locationChildrenSize) {
+                    AssetTreeViewNode(AssetTreeNodeType.LOCATION, locationChildren[index-assetChildrenSize], true)
+                } else {
+                    AssetTreeViewNode(AssetTreeNodeType.UNKNOWN, "Not found", true)
+                }
+                return node
+            } else if (parent.type == AssetTreeNodeType.ASSET) {
+                val parentAsset: AssetEntity = parent.userObject as AssetEntity
+                val assets = parentAsset.children
+                return AssetTreeViewNode(AssetTreeNodeType.ASSET, assets[index], true)
+            }
+        } else if (parent is DefaultMutableTreeNode) {
+            return AssetTreeViewNode(AssetTreeNodeType.ROOT, roots?.get(index), true)
+        }
+        return AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
+    }
+
     override fun isLeaf(node: Any?): Boolean {
         if (node is AssetTreeViewNode) {
             val isLeaf = if(node.type == AssetTreeNodeType.LOCATION) {
                 val nodeLocation: LocationEntity = node.userObject as LocationEntity
                 nodeLocation.children.isEmpty() && nodeLocation.assets.isEmpty()
             } else if (node.type == AssetTreeNodeType.ASSET) {
-                true
+                val nodeAsset: AssetEntity = node.userObject as AssetEntity
+                nodeAsset.children.isEmpty()
             } else if (node.type == AssetTreeNodeType.ROOT) {
                 false
             } else {

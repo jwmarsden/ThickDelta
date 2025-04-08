@@ -35,6 +35,21 @@ data class AssetEntity (
     val children: List<AssetEntity> = mutableListOf(),
 
     ) {
+
+    fun hasParent(): Boolean {
+        return parent != null
+    }
+
+    fun getChildrenWithoutParent(): List<AssetEntity> {
+        val assets: MutableList<AssetEntity> = mutableListOf()
+        for (asset in children) {
+            if (!asset.hasParent()) {
+                assets.add(asset)
+            }
+        }
+        return assets
+    }
+
     override fun toString(): String {
         return "AssetEntity(key='$key', description=$description)"
     }

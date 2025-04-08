@@ -46,6 +46,18 @@ data class LocationEntity (
 
     ) {
 
+    fun getAssetsWithoutParent(): List<AssetEntity> {
+        val assetWithoutParent: MutableList<AssetEntity> = mutableListOf()
+        if (assets.isNotEmpty()) {
+            for (asset in assets) {
+                if (!asset.hasParent()) {
+                    assetWithoutParent.add(asset)
+                }
+            }
+        }
+        return assetWithoutParent
+    }
+
     override fun toString(): String {
         return "LocationEntity(id=$id, key=$key, description=$description)"
     }
