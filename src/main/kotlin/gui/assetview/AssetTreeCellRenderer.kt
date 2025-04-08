@@ -3,6 +3,7 @@ package com.ventia.gui.assetview
 import com.ventia.entities.LocationEntity
 import com.ventia.entity.AssetEntity
 import com.ventia.gui.asset.AssetTreeViewNode
+import org.hsqldb.result.ResultMetaData.SysOffsets
 import java.awt.Color
 import java.awt.Component
 import java.net.URL
@@ -10,9 +11,11 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JTree
 import javax.swing.SwingConstants
+import javax.swing.tree.DefaultTreeCellRenderer
 import javax.swing.tree.TreeCellRenderer
 
-class AssetTreeCellRenderer : TreeCellRenderer {
+
+class AssetTreeCellRenderer : DefaultTreeCellRenderer() {
 
     private val rootIconURL: URL? = this::class.java.getResource("/image/icon/icon-root/icon-root-18.png")
     private val rootIcon: ImageIcon = ImageIcon(rootIconURL);
@@ -27,7 +30,7 @@ class AssetTreeCellRenderer : TreeCellRenderer {
 
 
     override fun getTreeCellRendererComponent(
-        tree: JTree?,
+        tree: JTree,
         value: Any?,
         selected: Boolean,
         expanded: Boolean,
@@ -35,47 +38,37 @@ class AssetTreeCellRenderer : TreeCellRenderer {
         row: Int,
         hasFocus: Boolean
     ): Component {
+        val fieldLabel = super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus) as JLabel
 
         val assetTreeNode = value as AssetTreeViewNode
         if(assetTreeNode.type == AssetTreeNodeType.LOCATION) {
             val location = assetTreeNode.userObject as LocationEntity
-            val label = if (location.maintainableFlag) {
-                val l = JLabel(value.toString(), tagIcon, SwingConstants.CENTER)
-                l.setForeground(Color.magenta)
-                l
+            if (location.maintainableFlag) {
+                fieldLabel.foreground = Color.magenta
+                fieldLabel.icon = tagIcon
             } else {
-                val l = JLabel(value.toString(), levelIcon, SwingConstants.CENTER)
-                l.setForeground(Color.darkGray)
-                l
+                fieldLabel.foreground = Color.darkGray
+                fieldLabel.icon = levelIcon
             }
-            return label
         } else if (assetTreeNode.type == AssetTreeNodeType.ASSET) {
             val asset = assetTreeNode.userObject as AssetEntity
-            val label = if (asset.linear) {
-                val l = JLabel(value.toString(), roadIcon, SwingConstants.CENTER)
-                l.setForeground(Color.blue)
-                l
+            if (asset.linear) {
+                fieldLabel.foreground = Color.blue
+                fieldLabel.icon = roadIcon
             } else {
-                val l = JLabel(value.toString(), assetIcon, SwingConstants.CENTER)
-                l.setForeground(Color.blue)
-                l
+                fieldLabel.foreground = Color.blue
+                fieldLabel.icon = assetIcon
             }
-            return label
-        } else if (assetTreeNode.type == AssetTreeNodeType.ROOT) {
-            val label = JLabel(
-                value.toString(),
-                rootIcon,
-                SwingConstants.CENTER
-            )
-            return label
+        } else {
+            fieldLabel.icon = rootIcon
         }
 
-        val label = JLabel(
-            value.toString(),
-            roadIcon,
-            SwingConstants.CENTER
-        )
-        return label
+        if(selected) {
+            fieldLabel.foreground = Color.white
+            fieldLabel.background = Color.green
+        }
+
+        return fieldLabel
     }
 
 }

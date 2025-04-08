@@ -9,6 +9,7 @@ import javax.swing.tree.DefaultMutableTreeNode
 
 class AssetTreeViewNode(val type: AssetTreeNodeType, userObject: Any?, allowsChildren: Boolean): DefaultMutableTreeNode(userObject, allowsChildren) {
 
+
     override fun toString(): String {
 
         if(type == AssetTreeNodeType.LOCATION) {
