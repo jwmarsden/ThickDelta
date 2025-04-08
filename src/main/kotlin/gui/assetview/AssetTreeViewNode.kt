@@ -2,14 +2,9 @@ package com.ventia.gui.asset
 
 import com.ventia.entities.LocationEntity
 import com.ventia.entity.AssetEntity
+import com.ventia.gui.assetview.AssetTreeNodeType
 import javax.swing.tree.DefaultMutableTreeNode
 
-enum class AssetTreeNodeType {
-    ROOT,
-    LOCATION,
-    ASSET,
-    UNKNOWN
-}
 
 
 class AssetTreeViewNode(val type: AssetTreeNodeType, userObject: Any?, allowsChildren: Boolean): DefaultMutableTreeNode(userObject, allowsChildren) {
@@ -21,9 +16,10 @@ class AssetTreeViewNode(val type: AssetTreeNodeType, userObject: Any?, allowsChi
             return "${locationObject.key} - ${locationObject.description}"
         } else if (type == AssetTreeNodeType.ASSET) {
             val assetObject = userObject as AssetEntity
-            return "${assetObject.key} - ${assetObject.description}"
+            return "${assetObject.key} - ${assetObject.description} (${assetObject.children.size})"
         } else if (type == AssetTreeNodeType.ROOT) {
-            return userObject.toString()
+            val locationObject = userObject as LocationEntity
+            return "${locationObject.key} - ${locationObject.description}"
         }
 
 

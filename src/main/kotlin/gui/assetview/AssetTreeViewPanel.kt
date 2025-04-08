@@ -1,8 +1,7 @@
 package com.ventia.gui.assetview
 
 import com.ventia.controller.AssetController
-import com.ventia.entities.LocationEntity
-import com.ventia.gui.asset.AssetTreeNodeType
+import com.ventia.entity.AssetEntity
 import com.ventia.gui.asset.AssetTreeViewModel
 import com.ventia.gui.asset.AssetTreeViewNode
 import com.ventia.intent.Intent
@@ -28,7 +27,7 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         background = Color.WHITE
         layout = BorderLayout()
 
-        val top = AssetTreeViewNode(AssetTreeNodeType.ROOT,"Road Hierarchy Root", allowsChildren = true)
+        val top = DefaultMutableTreeNode("Road Hierarchy Root")
 
         val treeModel = AssetTreeViewModel(controller, top)
         treeModel.loadRoots()
@@ -48,65 +47,6 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
 
         IntentHub.lookup().registerForIntent(this, PingIntent::class.java)
     }
-
-
-
-    class AssetTreeCellRenderer : TreeCellRenderer {
-
-        private val rootIconURL: URL? = this::class.java.getResource("/image/icon/icon-root/icon-root-18.png")
-        private val rootIcon: ImageIcon = ImageIcon(rootIconURL);
-        private val roadIconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road-18.png")
-        private val roadIcon: ImageIcon = ImageIcon(roadIconURL);
-        private val tagIconURL: URL? = this::class.java.getResource("/image/icon/icon-tag/icon-tag-18.png")
-        private val tagIcon: ImageIcon = ImageIcon(tagIconURL);
-        private val assetIconURL: URL? = this::class.java.getResource("/image/icon/icon-asset/icon-asset-18.png")
-        private val assetIcon: ImageIcon = ImageIcon(assetIconURL);
-
-
-        override fun getTreeCellRendererComponent(
-            tree: JTree?,
-            value: Any?,
-            selected: Boolean,
-            expanded: Boolean,
-            leaf: Boolean,
-            row: Int,
-            hasFocus: Boolean
-        ): Component {
-
-            val assetTreeNode = value as AssetTreeViewNode
-            if(assetTreeNode.type == AssetTreeNodeType.LOCATION) {
-                val label = JLabel(
-                    value.toString(),
-                    tagIcon,
-                    SwingConstants.CENTER
-                )
-                return label
-            } else if (assetTreeNode.type == AssetTreeNodeType.ASSET) {
-                val label = JLabel(
-                    value.toString(),
-                    assetIcon,
-                    SwingConstants.CENTER
-                )
-                return label
-            } else if (assetTreeNode.type == AssetTreeNodeType.ROOT) {
-                val label = JLabel(
-                    value.toString(),
-                    rootIcon,
-                    SwingConstants.CENTER
-                )
-                return label
-            }
-
-            val label = JLabel(
-                value.toString(),
-                roadIcon,
-                SwingConstants.CENTER
-            )
-            return label
-        }
-
-    }
-
 
     override fun valueChanged(e: TreeSelectionEvent?) {
         val node = tree?.getLastSelectedPathComponent() as DefaultMutableTreeNode

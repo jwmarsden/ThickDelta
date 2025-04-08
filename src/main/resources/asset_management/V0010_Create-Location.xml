@@ -52,6 +52,11 @@
             <column name="status" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
+            <column defaultValueBoolean="false"
+                    name="MAINTAINABLE_FLAG"
+                    type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
             <column name="discipline" type="VARCHAR"/>
         </createTable>
         <addUniqueConstraint columnNames="key"

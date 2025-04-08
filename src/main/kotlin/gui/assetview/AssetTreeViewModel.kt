@@ -2,6 +2,8 @@ package com.ventia.gui.asset
 
 import com.ventia.controller.AssetController
 import com.ventia.entities.LocationEntity
+import com.ventia.entity.AssetEntity
+import com.ventia.gui.assetview.AssetTreeNodeType
 import java.net.URL
 import javax.swing.Icon
 import javax.swing.ImageIcon
@@ -21,33 +23,15 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
     }
 
     override fun getChildCount(parent: Any?): Int {
-        //val genericNode: TreeNode = parent as TreeNode;
-
-        if (parent is AssetTreeViewNode) {
-            if(parent.type == AssetTreeNodeType.LOCATION) {
-                val nodeLocation: LocationEntity = parent.userObject as LocationEntity
-                return nodeLocation.children.size + nodeLocation.assets.size
-            } else if (parent.type == AssetTreeNodeType.ASSET) {
-                return 0
-            } else if (parent.type == AssetTreeNodeType.ROOT) {
-                return roots!!.size
-            }
-
-        }
-
-
-        return 0
+        return getChildCount(parent as TreeNode)
     }
 
     override fun getChild(parent: Any?, index: Int): AssetTreeViewNode? {
         if (parent is AssetTreeViewNode) {
-            if(parent.type == AssetTreeNodeType.LOCATION) {
+            if(parent.type == AssetTreeNodeType.LOCATION || parent.type == AssetTreeNodeType.ROOT) {
                 val parentLocation: LocationEntity = (parent as AssetTreeViewNode).userObject as LocationEntity
-
                 val assetsSize = parentLocation.assets.size
                 val childrenSize = parentLocation.children.size
-
-
                 val node: AssetTreeViewNode = if(index < assetsSize) {
                     AssetTreeViewNode(AssetTreeNodeType.ASSET, parentLocation.assets[index], true)
                 } else if (index < childrenSize+assetsSize) {
@@ -55,16 +39,36 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
                 } else {
                     AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
                 }
-
                 return node
             } else if (parent.type == AssetTreeNodeType.ASSET) {
                 return AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
-            } else if (parent.type == AssetTreeNodeType.ROOT) {
-                return AssetTreeViewNode(AssetTreeNodeType.LOCATION, roots?.get(index), true)
             }
+        } else if (parent is DefaultMutableTreeNode) {
+            return AssetTreeViewNode(AssetTreeNodeType.ROOT, roots?.get(index), true)
         }
 
         return AssetTreeViewNode(AssetTreeNodeType.UNKNOWN,"Not found", true)
+    }
+
+    fun getChildCount(parent: TreeNode): Int {
+        val size = if(parent is AssetTreeViewNode) {
+            if (parent.userObject is LocationEntity) {
+                val parentLocation: LocationEntity = parent.userObject as LocationEntity
+                val assets = parentLocation.assets
+                val children = parentLocation.children
+                assets.size + children.size
+            } else if (parent.userObject is AssetEntity) {
+                val parentAsset: AssetEntity = parent.userObject as AssetEntity
+                parentAsset.children.size
+            } else {
+                0
+            }
+        } else if(parent is DefaultMutableTreeNode) {
+            return roots!!.size
+        } else {
+            0
+        }
+        return size
     }
 
     override fun isLeaf(node: Any?): Boolean {
@@ -117,7 +121,7 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
         val locationRoots: MutableList<LocationEntity> = controller.lookupLocationRoots();
         for (root in locationRoots) {
             roots!!.add(root)
-            treeNodes!![root] = AssetTreeViewNode(AssetTreeNodeType.LOCATION, root, true)
+            treeNodes!![root] = AssetTreeViewNode(AssetTreeNodeType.ROOT, root, true)
         }
         print("Roots: $locationRoots")
     }

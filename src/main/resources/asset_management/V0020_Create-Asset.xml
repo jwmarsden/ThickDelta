@@ -75,7 +75,7 @@
                              primaryKey="true"
                              primaryKeyName="pk_asset"/>
             </column>
-            <column name="key" type="VARCHAR(10)">
+            <column name="key" type="VARCHAR(12)">
                 <constraints nullable="false" />
             </column>
             <column name="type" type="VARCHAR(8)">
@@ -89,6 +89,8 @@
                     type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
+            <column name="parent"
+                    type="VARCHAR(12)"/>
             <column name="location" type="VARCHAR(12)"/>
         </createTable>
         <addForeignKeyConstraint  baseColumnNames="type"

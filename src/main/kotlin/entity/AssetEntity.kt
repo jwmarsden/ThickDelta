@@ -23,9 +23,16 @@ data class AssetEntity (
     val linear: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent", referencedColumnName = "key")
+    val parent: AssetEntity? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location", referencedColumnName = "key")
     val location: LocationEntity? = null,
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name="parent", referencedColumnName = "key")
+    val children: List<AssetEntity> = mutableListOf(),
 
     ) {
     override fun toString(): String {

@@ -26,6 +26,9 @@ data class LocationEntity (
     @JoinColumn(name = "discipline", referencedColumnName = "discipline")
     val discipline: DisciplineEntity? = null,
 
+    @Column(nullable = false, name = "MAINTAINABLE_FLAG", columnDefinition="BOOLEAN DEFAULT FALSE")
+    val maintainableFlag: Boolean = false,
+
     @ManyToMany(mappedBy = "children", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val parents: List<LocationEntity> = mutableListOf(),
 
