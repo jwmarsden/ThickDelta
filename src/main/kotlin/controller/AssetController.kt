@@ -10,7 +10,7 @@ class AssetController(override val model: AssetModel) : Controller(model) {
         return model.getSystemList()
     }
 
-    fun lookupLocationRoots(system: SystemEntity): MutableList<LocationEntity> {
+    fun lookupLocationRoots(system: SystemEntity): List<LocationEntity> {
         return model.lookupLocationRoots(system)
     }
 

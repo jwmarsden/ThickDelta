@@ -51,7 +51,7 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         val systemDropdownValues = systemList.map { it }.toTypedArray()
 
         val systemDropdown: JComboBox<SystemEntity> = JComboBox<SystemEntity>(systemDropdownValues)
-        systemDropdown.setForeground(Color.GRAY)
+        systemDropdown.setForeground(Color.LIGHT_GRAY)
         systemDropdown.setBackground(Color.WHITE)
 
         systemDropdown.addActionListener(SystemActionListener())
@@ -130,10 +130,20 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
 
     override fun receiveIntent(intent: Intent) {
         if (intent.javaClass == SystemSelectedIntent::class.java) {
-            println("SystemSelectedIntent($intent)")
-            tree.clearSelection()
-            tree.collapseRow(0)
+            val systemSelectedIntent = intent as SystemSelectedIntent
+            if(systemSelectedIntent.system === treeModel.currentSystem) {
+                println("Update to current System. Do nothing. ")
+            } else {
+                println("SystemSelectedIntent($intent)")
+                val newSystem = systemSelectedIntent.system
+                treeModel = AssetTreeViewModel(controller, DefaultMutableTreeNode(newSystem), newSystem)
 
+                val top = DefaultMutableTreeNode("Road Hierarchy Root")
+                treeModel = AssetTreeViewModel(controller, top, newSystem)
+                tree.model = treeModel
+                treeModel.loadRoots(newSystem)
+                treeModel.reload()
+            }
         }
         if (intent.javaClass == PingIntent::class.java) {
             println("Pong($intent)")

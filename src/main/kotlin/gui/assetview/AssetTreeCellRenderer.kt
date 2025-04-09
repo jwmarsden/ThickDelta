@@ -35,35 +35,35 @@ class AssetTreeCellRenderer : DefaultTreeCellRenderer() {
         hasFocus: Boolean
     ): Component {
         val fieldLabel = super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus) as JLabel
-
-        val assetTreeNode = value as AssetTreeViewNode
-        if(assetTreeNode.type == AssetTreeNodeType.LOCATION) {
-            val location = assetTreeNode.userObject as LocationEntity
-            if (location.maintainableFlag) {
-                fieldLabel.foreground = Color.magenta
-                fieldLabel.icon = tagIcon
+        if (value is AssetTreeViewNode) {
+            val assetTreeNode = value as AssetTreeViewNode
+            if(assetTreeNode.type == AssetTreeNodeType.LOCATION) {
+                val location = assetTreeNode.userObject as LocationEntity
+                if (location.maintainableFlag) {
+                    fieldLabel.foreground = Color.magenta
+                    fieldLabel.icon = tagIcon
+                } else {
+                    fieldLabel.foreground = Color.darkGray
+                    fieldLabel.icon = levelIcon
+                }
+            } else if (assetTreeNode.type == AssetTreeNodeType.ASSET) {
+                val asset = assetTreeNode.userObject as AssetEntity
+                if (asset.linear) {
+                    fieldLabel.foreground = Color.blue
+                    fieldLabel.icon = roadIcon
+                } else {
+                    fieldLabel.foreground = Color.blue
+                    fieldLabel.icon = assetIcon
+                }
             } else {
-                fieldLabel.foreground = Color.darkGray
-                fieldLabel.icon = levelIcon
+                fieldLabel.icon = rootIcon
             }
-        } else if (assetTreeNode.type == AssetTreeNodeType.ASSET) {
-            val asset = assetTreeNode.userObject as AssetEntity
-            if (asset.linear) {
-                fieldLabel.foreground = Color.blue
-                fieldLabel.icon = roadIcon
-            } else {
-                fieldLabel.foreground = Color.blue
-                fieldLabel.icon = assetIcon
+
+            if(selected) {
+                fieldLabel.foreground = Color.white
+                fieldLabel.background = Color.green
             }
-        } else {
-            fieldLabel.icon = rootIcon
         }
-
-        if(selected) {
-            fieldLabel.foreground = Color.white
-            fieldLabel.background = Color.green
-        }
-
         return fieldLabel
     }
 

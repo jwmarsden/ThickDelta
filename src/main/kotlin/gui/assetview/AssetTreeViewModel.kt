@@ -13,6 +13,11 @@ class AssetTreeViewModel(private val controller: AssetController, private val ro
     private lateinit var roots: MutableList<LocationEntity>
     private lateinit var treeNodes: MutableMap<LocationEntity, AssetTreeViewNode>
 
+    init {
+        roots = mutableListOf()
+        treeNodes = mutableMapOf()
+    }
+
     override fun getRoot(): Any? {
         return root
     }
@@ -40,7 +45,7 @@ class AssetTreeViewModel(private val controller: AssetController, private val ro
                 0
             }
         } else if(parent is DefaultMutableTreeNode) {
-            return roots!!.size
+            return roots.size
         } else {
             0
         }
@@ -99,13 +104,7 @@ class AssetTreeViewModel(private val controller: AssetController, private val ro
     }
 
     fun loadRoots(system: SystemEntity) {
-        if(!::roots.isInitialized) {
-            roots = mutableListOf()
-        }
-        if(!::treeNodes.isInitialized) {
-            treeNodes = mutableMapOf()
-        }
-        val locationRoots: MutableList<LocationEntity> = controller.lookupLocationRoots(system)
+        val locationRoots: List<LocationEntity> = controller.lookupLocationRoots(system)
         for (root in locationRoots) {
             roots.add(root)
             treeNodes[root] = AssetTreeViewNode(AssetTreeNodeType.ROOT, root, true)
