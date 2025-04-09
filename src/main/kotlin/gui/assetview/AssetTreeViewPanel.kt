@@ -1,14 +1,20 @@
 package com.ventia.gui.assetview
 
 import com.ventia.controller.AssetController
-import com.ventia.gui.asset.AssetTreeViewModel
+import com.ventia.entities.SystemEntity
+import com.ventia.gui.assetview.intent.SystemSelectedIntent
 import com.ventia.intent.Intent
 import com.ventia.intent.IntentHub
 import com.ventia.intent.IntentReceiver
 import com.ventia.intent.PingIntent
+import jdk.incubator.vector.Vector
 import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.Font
+import java.awt.event.ActionEvent
+import java.awt.event.ActionListener
+import java.awt.event.ItemEvent
+import java.awt.event.ItemListener
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 import javax.swing.event.TreeSelectionEvent
@@ -19,29 +25,43 @@ import javax.swing.tree.TreeSelectionModel
 
 class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), TreeSelectionListener, IntentReceiver {
 
+    private lateinit var toolPanel: JPanel
     private lateinit var searchPanel: JPanel
     private lateinit var identifierQuery: JTextField
     private lateinit var descriptionQuery: JTextField
 
+    private lateinit var treeModel: AssetTreeViewModel
     private lateinit var tree: JTree
 
     override fun addNotify() {
         super.addNotify()
 
 
+        toolPanel = JPanel()
+        toolPanel.setLayout(BorderLayout())
+        toolPanel.setBackground(Color.WHITE)
+
         searchPanel = JPanel()
         searchPanel.setLayout(BorderLayout())
         searchPanel.setBackground(Color.WHITE)
 
-        val systemDropdownValues = arrayOf("Road", "Power", "Comms")
-        val systemDropdown: JComboBox<*> = JComboBox<Any?>(systemDropdownValues)
+        val systemList = controller.getSystemList()
+        val system = systemList.first()
+
+        val systemDropdownValues = systemList.map { it }.toTypedArray()
+
+        val systemDropdown: JComboBox<SystemEntity> = JComboBox<SystemEntity>(systemDropdownValues)
         systemDropdown.setForeground(Color.GRAY)
         systemDropdown.setBackground(Color.WHITE)
+
+        systemDropdown.addActionListener(SystemActionListener())
+        //systemDropdown.addItemListener(SystemItemListener())
+
         //systemDropdown.border = javax.swing.BorderFactory.createLineBorder(Color.LIGHT_GRAY,1)
 
-        identifierQuery = JTextField("Key")
-        identifierQuery.setColumns(8)
-        identifierQuery.setToolTipText("Key Query")
+        identifierQuery = JTextField("Id")
+        identifierQuery.columns = 10
+        identifierQuery.setToolTipText("Id Query")
         //identifierQuery.border = javax.swing.BorderFactory.createLineBorder(Color.LIGHT_GRAY,1)
 
         descriptionQuery = JTextField("Description")
@@ -53,27 +73,20 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         descriptionQuery.setForeground(Color.LIGHT_GRAY)
         descriptionQuery.setBackground(Color.WHITE)
 
-//        val lineStart = JPanel()
-//        lineStart.border = javax.swing.BorderFactory.createEmptyBorder()
-//        lineStart.setBackground(Color.WHITE)
-
-        //lineStart.add(systemDropdown, BorderLayout.WEST)
-        //lineStart.add(identifierQuery, BorderLayout.EAST);
-
-        searchPanel.add(systemDropdown, BorderLayout.WEST)
-        searchPanel.add(identifierQuery, BorderLayout.CENTER)
-        searchPanel.add(descriptionQuery, BorderLayout.EAST)
+        searchPanel.add(identifierQuery, BorderLayout.WEST)
+        searchPanel.add(descriptionQuery, BorderLayout.CENTER)
         //searchPanel.add(busyLabel, BorderLayout.LINE_END);
 
+        toolPanel.add(systemDropdown, BorderLayout.WEST)
+        toolPanel.add(searchPanel, BorderLayout.CENTER)
 
 
         //background = Color.WHITE
         layout = BorderLayout()
 
         val top = DefaultMutableTreeNode("Road Hierarchy Root")
-
-        val treeModel = AssetTreeViewModel(controller, top)
-        treeModel.loadRoots()
+        treeModel = AssetTreeViewModel(controller, top, system)
+        treeModel.loadRoots(system)
 
         tree = JTree(treeModel)
         tree.isRootVisible = false
@@ -88,7 +101,7 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
 
         val treeViewTreePanel = JPanel()
         treeViewTreePanel.layout = BorderLayout()
-        treeViewTreePanel.add(searchPanel, BorderLayout.NORTH)
+        treeViewTreePanel.add(toolPanel, BorderLayout.NORTH)
         treeViewTreePanel.add(treeView, BorderLayout.CENTER)
 
         layout = BorderLayout()
@@ -96,24 +109,49 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         add(treeViewTreePanel, BorderLayout.CENTER)
 
         IntentHub.lookup().registerForIntent(this, PingIntent::class.java)
+        IntentHub.lookup().registerForIntent(this, SystemSelectedIntent::class.java)
     }
 
-    override fun valueChanged(e: TreeSelectionEvent?) {
-        val node = tree.getLastSelectedPathComponent() as DefaultMutableTreeNode
 
-        val nodeInfo = node.userObject
-        if (node.isLeaf) {
-            println(node)
-            IntentHub.lookup().notifyIntent(PingIntent(controller))
-        } else {
-            println("Not Leaf")
+
+    override fun valueChanged(e: TreeSelectionEvent?) {
+        val selectedNode = tree.lastSelectedPathComponent
+        if(selectedNode != null) {
+            val node = selectedNode as DefaultMutableTreeNode
+            val nodeInfo = node.userObject
+            if (node.isLeaf) {
+                println(node)
+                IntentHub.lookup().notifyIntent(PingIntent(controller))
+            } else {
+                println("Not Leaf")
+            }
         }
     }
 
     override fun receiveIntent(intent: Intent) {
+        if (intent.javaClass == SystemSelectedIntent::class.java) {
+            println("SystemSelectedIntent($intent)")
+            tree.clearSelection()
+            tree.collapseRow(0)
+
+        }
         if (intent.javaClass == PingIntent::class.java) {
             println("Pong($intent)")
         }
     }
+
+
+    private inner class SystemActionListener : ActionListener {
+        override fun actionPerformed(e: ActionEvent) {
+            val source = e.source as JComboBox<*>
+            IntentHub.lookup().notifyIntent(SystemSelectedIntent(controller, source.selectedItem as SystemEntity))
+        }
+    }
+    private inner class SystemItemListener : ItemListener {
+        override fun itemStateChanged(e: ItemEvent?) {
+            println("Event: $e")
+        }
+    }
+
 
 }

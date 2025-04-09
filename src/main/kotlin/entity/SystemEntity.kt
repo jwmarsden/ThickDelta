@@ -23,4 +23,10 @@ data class SystemEntity(
     @Column(nullable = false)
     val active: Boolean = false,
 
-)
+
+
+) {
+    override fun toString(): String {
+        return "SystemEntity(system=$system)"
+    }
+}

@@ -2,6 +2,7 @@ package com.ventia.entities
 
 import com.ventia.entity.AssetEntity
 import jakarta.persistence.*
+import org.hibernate.query.Query
 
 @Entity
 @SequenceGenerator(name = "location-id-seq", sequenceName = "LOCATION_ID_SEQ", initialValue = 100, allocationSize = 10)
@@ -29,8 +30,8 @@ data class LocationEntity (
     @Column(nullable = false, name = "MAINTAINABLE_FLAG", columnDefinition="BOOLEAN DEFAULT FALSE")
     val maintainableFlag: Boolean = false,
 
-    @ManyToMany(mappedBy = "children", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val parents: List<LocationEntity> = mutableListOf(),
+    //@ManyToMany(mappedBy = "children", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    //val parents: List<LocationEntity> = mutableListOf(),
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
@@ -74,7 +75,4 @@ data class LocationEntity (
     override fun hashCode(): Int {
         return key.hashCode()
     }
-
-
-
 }

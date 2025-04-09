@@ -1,4 +1,4 @@
-package com.ventia.gui.asset
+package com.ventia.gui.assetview
 
 import com.ventia.entities.LocationEntity
 import com.ventia.entity.AssetEntity

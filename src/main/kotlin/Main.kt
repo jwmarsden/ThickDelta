@@ -5,13 +5,14 @@ import com.ventia.entities.*
 import com.ventia.entity.AssetEntity
 import com.ventia.entity.AssetStatusEntity
 import com.ventia.gui.MainFrame
-import com.ventia.gui.asset.AssetHierarchyView
+import com.ventia.gui.assetview.AssetHierarchyView
 import com.ventia.model.AssetModel
 import liquibase.util.LiquibaseUtil
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.cfg.Configuration
 import org.hibernate.cfg.JdbcSettings.*
+import org.hibernate.query.Query
 import java.awt.BorderLayout
 import java.awt.Dimension
 import java.awt.event.WindowAdapter
@@ -19,7 +20,6 @@ import java.awt.event.WindowEvent
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.Statement
-import javax.swing.JOptionPane
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -60,18 +60,32 @@ fun main() {
     //    session.flush()
     //}
 
+//    sessionFactory.inSession({ session: Session ->
+//        val parentLocation = session
+//            .createSelectionQuery("from LocationEntity where key = '6203'", LocationEntity::class.java)
+//            .singleResult
+//        println("Location: $parentLocation")
+//        val children = parentLocation.children
+//        println("Children Count: ${children.size}")
+//
+//        val childLocation = children.first()
+//
+//        println("Location: $childLocation Parents: ${childLocation.parents}")
+//
+//    })
+
     sessionFactory.inSession({ session: Session ->
-        val parentLocation = session
-            .createSelectionQuery("from LocationEntity where key = '6203'", LocationEntity::class.java)
-            .singleResult
-        println("Location: $parentLocation")
-        val children = parentLocation.children
-        println("Children Count: ${children.size}")
+        val hql ="select h.location from LocationSystemHierarchyEntity h where h.parent is null and h.system.system = :system order by h.order asc"
 
-        val childLocation = children.first()
+        val query: Query<LocationEntity> = session.createQuery(hql, LocationEntity::class.java)
 
-        println("Location: $childLocation Parents: ${childLocation.parents}")
+        query.setParameter("system", "POWER");
 
+        val roots: List<LocationEntity> = query.resultList;
+
+        for (root in roots) {
+            println(root)
+        }
     })
 
 

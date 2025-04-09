@@ -2,17 +2,13 @@ package com.ventia.gui.assetview
 
 import com.ventia.entities.LocationEntity
 import com.ventia.entity.AssetEntity
-import com.ventia.gui.asset.AssetTreeViewNode
-import org.hsqldb.result.ResultMetaData.SysOffsets
 import java.awt.Color
 import java.awt.Component
 import java.net.URL
 import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JTree
-import javax.swing.SwingConstants
 import javax.swing.tree.DefaultTreeCellRenderer
-import javax.swing.tree.TreeCellRenderer
 
 
 class AssetTreeCellRenderer : DefaultTreeCellRenderer() {

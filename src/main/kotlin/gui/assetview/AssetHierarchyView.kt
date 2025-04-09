@@ -1,7 +1,6 @@
-package com.ventia.gui.asset
+package com.ventia.gui.assetview
 
 import com.ventia.controller.AssetController
-import com.ventia.gui.assetview.AssetTreeViewPanel
 import java.awt.*
 import java.net.URL
 import javax.swing.ImageIcon

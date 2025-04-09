@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @SequenceGenerator(name = "location_system_hierarchy-id-seq", sequenceName = "LOCATION_SYSTEM_HIERARCHY_ID_SEQ", initialValue = 10, allocationSize = 10)
 @Table(name = "LOCATION_SYSTEM_HIERARCHY",
     uniqueConstraints=[UniqueConstraint(name= "LOCATION_SYSTEM_HIERARCHY_C01", columnNames = ["SYSTEM_ID", "PARENT_ID","LOCATION_ID"])]
-    )
+)
 data class LocationSystemHierarchyEntity(
 
     @Id
@@ -25,6 +25,8 @@ data class LocationSystemHierarchyEntity(
     @JoinColumn(nullable = false)
     val location: LocationEntity? = null,
 
+    @Column(nullable = false, columnDefinition = "int default 100")
+    val order: Int
 
 ) {
     override fun toString(): String {

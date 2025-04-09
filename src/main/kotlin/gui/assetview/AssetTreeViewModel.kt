@@ -1,22 +1,17 @@
-package com.ventia.gui.asset
+package com.ventia.gui.assetview
 
 import com.ventia.controller.AssetController
 import com.ventia.entities.LocationEntity
+import com.ventia.entities.SystemEntity
 import com.ventia.entity.AssetEntity
-import com.ventia.gui.assetview.AssetTreeNodeType
-import java.net.URL
-import javax.swing.Icon
-import javax.swing.ImageIcon
-import javax.swing.event.TreeModelListener
 import javax.swing.tree.DefaultMutableTreeNode
-import javax.swing.tree.TreeModel
+import javax.swing.tree.DefaultTreeModel
 import javax.swing.tree.TreeNode
-import javax.swing.tree.TreePath
 
 
-class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) : TreeModel {
-    var roots: MutableList<LocationEntity>? = null
-    var treeNodes: MutableMap<LocationEntity, AssetTreeViewNode>? = null
+class AssetTreeViewModel(private val controller: AssetController, private val root: TreeNode?, var currentSystem:SystemEntity) : DefaultTreeModel(root) {
+    private lateinit var roots: MutableList<LocationEntity>
+    private lateinit var treeNodes: MutableMap<LocationEntity, AssetTreeViewNode>
 
     override fun getRoot(): Any? {
         return root
@@ -35,7 +30,8 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
             if (parent.userObject is LocationEntity) {
                 val parentLocation: LocationEntity = parent.userObject as LocationEntity
                 val assets = parentLocation.getAssetsWithoutParent()
-                val children = parentLocation.children
+
+                val children = controller.getChildrenInSystem(parentLocation, currentSystem)
                 children.size + assets.size
             } else if (parent.userObject is AssetEntity) {
                 val parentAsset: AssetEntity = parent.userObject as AssetEntity
@@ -56,7 +52,7 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
             if(parent.type == AssetTreeNodeType.LOCATION || parent.type == AssetTreeNodeType.ROOT) {
                 val parentLocation: LocationEntity = parent.userObject as LocationEntity
                 val assetChildren = parentLocation.getAssetsWithoutParent()
-                val locationChildren = parentLocation.children
+                val locationChildren = controller.getChildrenInSystem(parentLocation, currentSystem)
                 val assetChildrenSize = assetChildren.size
                 val locationChildrenSize = locationChildren.size
 
@@ -102,38 +98,17 @@ class AssetTreeViewModel(val controller: AssetController, val root: TreeNode?) :
         return true
     }
 
-    override fun valueForPathChanged(path: TreePath?, newValue: Any?) {
-
-    }
-
-    override fun getIndexOfChild(parent: Any?, child: Any?): Int {
-        return 0
-    }
-
-    override fun addTreeModelListener(l: TreeModelListener?) {
-
-    }
-
-    override fun removeTreeModelListener(l: TreeModelListener?) {
-
-    }
-
-    fun loadRoots() {
-        if (roots != null) {
-            roots?.clear()
-        } else {
+    fun loadRoots(system: SystemEntity) {
+        if(!::roots.isInitialized) {
             roots = mutableListOf()
         }
-        if (treeNodes != null) {
-            treeNodes?.clear()
-        } else {
+        if(!::treeNodes.isInitialized) {
             treeNodes = mutableMapOf()
         }
-        val locationRoots: MutableList<LocationEntity> = controller.lookupLocationRoots();
+        val locationRoots: MutableList<LocationEntity> = controller.lookupLocationRoots(system)
         for (root in locationRoots) {
-            roots!!.add(root)
-            treeNodes!![root] = AssetTreeViewNode(AssetTreeNodeType.ROOT, root, true)
+            roots.add(root)
+            treeNodes[root] = AssetTreeViewNode(AssetTreeNodeType.ROOT, root, true)
         }
-        print("Roots: $locationRoots")
     }
 }

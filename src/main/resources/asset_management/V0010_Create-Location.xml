@@ -98,6 +98,11 @@
                     type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+            <column defaultValueNumeric="100"
+                    name="order"
+                    type="int">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <addUniqueConstraint columnNames="system_id, parent_id, location_id"
                              constraintName="LOCATION_SYSTEM_HIERARCHY_C01"
