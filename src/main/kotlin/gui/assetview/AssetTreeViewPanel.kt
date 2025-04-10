@@ -7,14 +7,11 @@ import com.ventia.intent.Intent
 import com.ventia.intent.IntentHub
 import com.ventia.intent.IntentReceiver
 import com.ventia.intent.PingIntent
-import jdk.incubator.vector.Vector
 import java.awt.BorderLayout
 import java.awt.Color
 import java.awt.Font
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
-import java.awt.event.ItemEvent
-import java.awt.event.ItemListener
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 import javax.swing.event.TreeSelectionEvent
@@ -63,10 +60,12 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         identifierQuery.columns = 10
         identifierQuery.setToolTipText("Id Query")
         //identifierQuery.border = javax.swing.BorderFactory.createLineBorder(Color.LIGHT_GRAY,1)
+        identifierQuery.isEnabled = false
 
         descriptionQuery = JTextField("Description")
         descriptionQuery.setToolTipText("Description Query")
         //descriptionQuery.border = javax.swing.BorderFactory.createLineBorder(Color.LIGHT_GRAY,1)
+        descriptionQuery.isEnabled = false
 
         identifierQuery.setForeground(Color.LIGHT_GRAY)
         identifierQuery.setBackground(Color.WHITE)
@@ -80,7 +79,6 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         toolPanel.add(systemDropdown, BorderLayout.WEST)
         toolPanel.add(searchPanel, BorderLayout.CENTER)
 
-
         //background = Color.WHITE
         layout = BorderLayout()
 
@@ -93,7 +91,7 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         tree.selectionModel.selectionMode = TreeSelectionModel.SINGLE_TREE_SELECTION
         tree.border = EmptyBorder(4, 1, 4, 1)
         tree.font = Font(Font.MONOSPACED, Font.PLAIN, 12)
-        tree.addTreeSelectionListener(this);
+        tree.addTreeSelectionListener(this)
         //tree!!.cellRenderer = DefaultTreeCellRenderer()
         tree.cellRenderer = AssetTreeCellRenderer()
 
@@ -118,7 +116,6 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         val selectedNode = tree.lastSelectedPathComponent
         if(selectedNode != null) {
             val node = selectedNode as DefaultMutableTreeNode
-            val nodeInfo = node.userObject
             if (node.isLeaf) {
                 println(node)
                 IntentHub.lookup().notifyIntent(PingIntent(controller))
@@ -157,11 +154,11 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
             IntentHub.lookup().notifyIntent(SystemSelectedIntent(controller, source.selectedItem as SystemEntity))
         }
     }
-    private inner class SystemItemListener : ItemListener {
-        override fun itemStateChanged(e: ItemEvent?) {
-            println("Event: $e")
-        }
-    }
+//    private inner class SystemItemListener : ItemListener {
+//        override fun itemStateChanged(e: ItemEvent?) {
+//            println("Event: $e")
+//        }
+//    }
 
 
 }
