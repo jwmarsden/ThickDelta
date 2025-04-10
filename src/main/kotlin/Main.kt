@@ -4,6 +4,7 @@ import com.ventia.controller.AssetController
 import com.ventia.entities.*
 import com.ventia.entity.AssetEntity
 import com.ventia.entity.AssetStatusEntity
+import com.ventia.entity.TypeEntity
 import com.ventia.gui.MainFrame
 import com.ventia.gui.assetview.AssetHierarchyView
 import com.ventia.model.AssetModel
@@ -34,6 +35,7 @@ fun main() {
     println(LiquibaseUtil.getBuildVersionInfo())
 
     val sessionFactory: SessionFactory = Configuration()
+        .addAnnotatedClass(TypeEntity::class.java)
         .addAnnotatedClass(DisciplineEntity::class.java)
         .addAnnotatedClass(SystemEntity::class.java)
         .addAnnotatedClass(LocationStatusEntity::class.java)

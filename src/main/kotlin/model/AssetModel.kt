@@ -2,6 +2,7 @@ package com.ventia.model
 
 import com.ventia.entities.LocationEntity
 import com.ventia.entities.SystemEntity
+import com.ventia.entity.AssetEntity
 import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.query.Query
@@ -13,6 +14,7 @@ class AssetModel(sessionFactory: SessionFactory) : Model(sessionFactory) {
 
     private var session: Session? = null
 
+    private val locationInSystem ="select h.location from LocationSystemHierarchyEntity h where h.location.key = :locationKey and h.system.system = :system order by h.order asc"
     private val childrenInSystemLocationQueryHQL ="select h.location from LocationSystemHierarchyEntity h where h.parent.key = :parentKey and h.system.system = :system order by h.order asc"
     private val parentInSystemLocationQueryHQL ="select h.parent from LocationSystemHierarchyEntity h where h.location.key = :childKey and h.system.system = :system order by h.order asc"
 
@@ -67,21 +69,42 @@ class AssetModel(sessionFactory: SessionFactory) : Model(sessionFactory) {
         return childrenLocations
     }
 
-    fun getParentInSystem(child: LocationEntity, systemString: String): LocationEntity {
+    fun getParentInSystem(child: LocationEntity, systemString: String): LocationEntity? {
         return getParentInSystem(child, getSystem(systemString))
     }
 
-    fun getParentInSystem(child: LocationEntity, system: SystemEntity): LocationEntity {
+    fun getParentInSystem(child: LocationEntity, system: SystemEntity): LocationEntity? {
         getSession()
         val query: Query<LocationEntity> = session!!.createQuery(parentInSystemLocationQueryHQL, LocationEntity::class.java)
 
         query.setParameter("childKey", child.key)
         query.setParameter("system", system.system)
 
-        val parentLocation: LocationEntity = query.singleResult
-
-        return parentLocation
+        val queryResult: MutableList<LocationEntity> = query.resultList
+        return if (queryResult.isEmpty()) {
+            null
+        } else {
+            queryResult.first()
+        }
     }
 
+//    fun getParentInSystem(child: AssetEntity, systemString: String): LocationEntity? {
+//        return model.getParentInSystem(child, getSystem(systemString))
+//    }
+
+    fun getParentInSystem(child: AssetEntity, system: SystemEntity): LocationEntity? {
+        getSession()
+        val query: Query<LocationEntity> = session!!.createQuery(locationInSystem, LocationEntity::class.java)
+
+        query.setParameter("locationKey", child.parent)
+        query.setParameter("system", system.system)
+
+        val queryResult: MutableList<LocationEntity> = query.resultList
+        return if (queryResult.isEmpty()) {
+            null
+        } else {
+            queryResult.first()
+        }
+    }
 
 }

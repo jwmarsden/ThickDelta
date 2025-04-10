@@ -110,25 +110,23 @@ class AssetTreeViewModel(private val controller: AssetController, root: TreeNode
         }
     }
 
-    private fun getTreeNode(entity: Any): AssetTreeViewNode {
+    fun getTreeNode(entity: Any): AssetTreeViewNode {
         val returnNode = if(entity is LocationEntity) {
-            val locationEntity = entity
-            val returnNode = if (!locationTreeNodes.containsKey(locationEntity)) {
-                val newNode = AssetTreeViewNode(AssetTreeNodeType.LOCATION, locationEntity, true)
-                locationTreeNodes[locationEntity] = newNode
+            val returnNode = if (!locationTreeNodes.containsKey(entity)) {
+                val newNode = AssetTreeViewNode(AssetTreeNodeType.LOCATION, entity, true)
+                locationTreeNodes[entity] = newNode
                 newNode
             } else {
-                locationTreeNodes[locationEntity]
+                locationTreeNodes[entity]
             }
             returnNode
         } else if(entity is AssetEntity) {
-            val assetEntity = entity
-            val returnNode = if (!assetTreeNodes.containsKey(assetEntity)) {
-                val newNode = AssetTreeViewNode(AssetTreeNodeType.ASSET, assetEntity, true)
-                assetTreeNodes[assetEntity] = newNode
+            val returnNode = if (!assetTreeNodes.containsKey(entity)) {
+                val newNode = AssetTreeViewNode(AssetTreeNodeType.ASSET, entity, true)
+                assetTreeNodes[entity] = newNode
                 newNode
             } else {
-                assetTreeNodes[assetEntity]
+                assetTreeNodes[entity]
             }
             returnNode
         } else {

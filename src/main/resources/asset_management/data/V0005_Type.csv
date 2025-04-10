@@ -1,0 +1,390 @@
+﻿id,type,description,active
+0,UNK,Unknown,TRUE
+1,GROUP,Group,TRUE
+2,ROAD,Main Road,TRUE
+4,NCRN,NCRN Road,TRUE
+3,COUNCIL,Council,TRUE
+5,LINK,Link,TRUE
+6,NODE,Node,TRUE
+7,SUBLINK,Sub-Link,TRUE
+8,SUBNODE,Sub-Node,TRUE
+9,OUTDOOR,Outdoor Area,TRUE
+3060,SBT,Start / End Terminal,TRUE
+3061,SET,Start / End Terminal,TRUE
+11,AQD,CO/NO/Vis Instrument,TRUE
+20,WTPD,Dosing plant,TRUE
+30,WTPI,Instrumentation,TRUE
+40,VACT,Ventilation Actuator,TRUE
+50,WTP,Water Treatment Plant,TRUE
+60,BSHL,Bus shelter,TRUE
+70,BSTS,Bench seat,TRUE
+80,BKST,Bike storage,TRUE
+90,BKHO,Bike hoop,TRUE
+100,BRAS,Abutment Structure,TRUE
+110,AWS,Advanced Warning Signs,TRUE
+120,AIDSC,AID VIDS / TIDS Camera,TRUE
+130,ACU,Air Conditioning Unit,TRUE
+140,ACC,Air Cooled Condenser,TRUE
+150,FSAB,Alarm Bell and Beacon,TRUE
+160,FNI,Alarm Signalling Equipment,TRUE
+170,AMP,Amplifier,TRUE
+180,ANT,Antenna,TRUE
+190,AQMPS,AQM Power Supply,TRUE
+200,LTAR,Architectural & feature Lighting,TRUE
+210,ALUV,Architectural Louvers,TRUE
+220,ASE,ASE Device,TRUE
+230,ASD,Aspirating smoke detection System (VESDA),TRUE
+240,ATM,Audio Tactile Marking,TRUE
+250,VID,Automatic Vehicle Incident Detection System,TRUE
+260,AXF,Axial Fans (AXF),TRUE
+270,BDS,Backlit Directional Signs,TRUE
+280,BRBE,Bearings,TRUE
+290,BDA,Bi-directional amplifier,TRUE
+300,BIN,Bins,TRUE
+310,TFBW,Block Wall Structures,TRUE
+320,BTS,Bluetooth Station,TRUE
+330,BB,Boom Barrier ,TRUE
+340,TSBT,Bored Tunnel Structure,TRUE
+350,BGU,Break Glass Unit,TRUE
+360,BRBD,Bridge Deck,TRUE
+370,BUAR,Building Architecture,TRUE
+380,SBES,Building Electrical Services,TRUE
+390,LTB,Building Lighting,TRUE
+400,HVBC,Bus-tie (HV),TRUE
+410,LVBT,Bus-tie (LV),TRUE
+420,CTC,C2C System,TRUE
+430,HVCL,Cable Ladders and Ducts (HV),TRUE
+440,HVPIT,Cable Pits (HV),TRUE
+450,LVPIT,Cable Pits (LV),TRUE
+460,HVC,Cables (HV),TRUE
+470,ESCS,Cables and  Cooling Systems (LV),TRUE
+480,CAM,Camera,TRUE
+490,CASU,Cassette Unit (Mechanical),TRUE
+500,VM,CCTV system video monitors,TRUE
+510,CMS,Changeable Message Signs,TRUE
+520,LVCB,Circuit Breaker (LV),TRUE
+530,HVIB,Circuit Breaker Incoming (HV),TRUE
+540,VOCM,CO / NO Chemilumenescent Analyser,TRUE
+550,ITPIT,Communication Cable Pit,TRUE
+560,CMP,Computer,TRUE
+570,BFC,Concrete Building Facade,TRUE
+580,BFCO,Concrete elements,TRUE
+590,TMCC,Concrete Lining,TRUE
+600,CLUS,Contraflow Lane use management signs,TRUE
+610,LVCPL,Control Panel - Lighting,TRUE
+620,LVCPP,Control Panel - Pumps,TRUE
+630,LVCPV,Control Panel - Ventilation,TRUE
+640,PMGUI,Control Panel GUI,TRUE
+650,WTPCS,Control system,TRUE
+660,CTL,Controller,TRUE
+670,TSCM,Corrosion Monitoring Points,TRUE
+680,CATT,Crash Attenuators,TRUE
+690,TFEP,Cross and Egress Passage,TRUE
+700,CPAC,Cross Passage Air Conditioning Units,TRUE
+710,CPD,Cross Passage Doors,TRUE
+720,FDR,Cross Passage Fire Doors c/w actuator,TRUE
+730,LTX,Cross Passageway Lighting,TRUE
+740,XPF,Cross Passageway Pressurisation Fan,TRUE
+750,DWM,Dampers,TRUE
+760,FDGU,Data Gathering Unit,TRUE
+770,FDMP,Data Marshalling Panel,TRUE
+780,FDMPB,Data Marshalling Panel Battery,TRUE
+790,DCS,DCCTV Server Computers,TRUE
+800,CCTV,DCCTV System Software Suite (Indigovision),TRUE
+810,DIV,Deluge Main Section Isolation Valve,TRUE
+820,DPM,Deluge Pump manifold,TRUE
+830,DRVL,Deluge Release Valve,TRUE
+840,DVL,Deluge Valve,TRUE
+850,DVM,Deluge Valve Manifold,TRUE
+860,FDH,Detection Head and Base,TRUE
+870,VDL,Detection Loop,TRUE
+880,DDP,Diesel Deluge Pump,TRUE
+890,LVGEN,Diesel Driven Standby Generators,TRUE
+900,DPG,Differential pressure gauges,TRUE
+910,DPS,Differential Pressure Switch,TRUE
+920,DSP,Digital Signal Processor,TRUE
+930,DES,Directional Exit Signs,TRUE
+940,CPLM,Distinctive Coloured Pavement Areas,TRUE
+950,DTSU,Distributed Temperature Sensing Unit,TRUE
+960,PU,Drainage Pumps,TRUE
+970,SWDT,Drainage Trench,TRUE
+980,DRV,Driver,TRUE
+990,DTTX,Dry Type Transformer,TRUE
+1000,DUP,Duplexer,TRUE
+1010,EBC,Earth Bonding & down conductors,TRUE
+1020,EMB,Earth Marshalling Bar,TRUE
+1030,EEL,Earthing Electrode,TRUE
+1040,HVSW,Earthing switch,TRUE
+1050,WTPL,Effluent storage lagoons,TRUE
+1060,EDLT,Egress door emergency down-lighting,TRUE
+1070,LTW,Egress door guidance wayfinding lighting,TRUE
+1080,FDRS,Egress door signage (non-ill),TRUE
+1090,EPS,Egress Pressurisation Fan,TRUE
+1100,EDP,Electric Deluge Pump,TRUE
+1110,LIEL,Elevators,TRUE
+1120,EEDB,Essential Electrical Distribution Board,TRUE
+1130,NWK,Ethernet network switch,TRUE
+1140,EWIS,EWIS Panel,TRUE
+1150,EWISP,EWIS Panel Battery,TRUE
+1160,BREJ,Expansion Joint,TRUE
+1170,APEP,Exterior Painting,TRUE
+1180,FAN,Fan other (building ventilation),TRUE
+1190,FCU,Fancoil unit (Mechanical),TRUE
+1200,FGS,Fences,TRUE
+1210,FOBOT,Fibre optic breakout termination box,TRUE
+1220,FOHDS,Fibre Optic Heat Detection System,TRUE
+1230,FP,Field Comms Interface Device,TRUE
+1240,FB,Fire Blanket,TRUE
+1250,FBC,Fire Brigade Booster Cabinet,TRUE
+1260,WIP,Fire Emergency Telephone System,TRUE
+1270,HRL,Fire Hose Reels,TRUE
+1280,FHB,Fire Hydrant Booster,TRUE
+1290,FHY,Fire Hydrants,TRUE
+1300,FNC,Fire Niche Cabinet,TRUE
+1310,FPBAT,Fire Panel Batteries,TRUE
+1320,PMP,Fire pressure pump (non Deluge),TRUE
+1330,FPS,Fire Suppression Control panel,TRUE
+1340,FW,Firewall,TRUE
+1350,FIX,Fixed Surveillance Camera c/w enclosure,TRUE
+1360,FPAV,Flexible Pavement,TRUE
+1370,FIT,Flow Indicating Transmitter,TRUE
+1380,VOAV,Flu gas temperature and velocity,TRUE
+1390,FSYS,Foam System,TRUE
+1400,APFF,Framework and Fixings,TRUE
+1410,LVFU,Fuse (LV),TRUE
+1420,GTY,Gantry,TRUE
+1430,GTYA,Gantry Access Structures and Ladders,TRUE
+1440,GATE,Gates,TRUE
+1450,HVTX,General - High Voltage Transformer,TRUE
+1460,LT,General Lighting,TRUE
+1470,GPO,General Power outlets (GPO),TRUE
+1480,TSGM,Geotechnical Monitoring Points,TRUE
+1490,BRGI,Girders (Span),TRUE
+1500,BFGE,Glass Elements,TRUE
+1510,GNSB,Glass noise barrier panels,TRUE
+1520,FGUI,Graphical User Interface and Mimic,TRUE
+1530,GPT,Gross Pollutant Trap,TRUE
+1540,GRA,Guard Rail,TRUE
+1550,BHGP,Gutters and Down Pipes,TRUE
+1560,LVHF,Harmonic Filters,TRUE
+1570,HW,Headwall,TRUE
+1580,HTR,Heater,TRUE
+1590,HLP,Help Telephone,TRUE
+1600,HMI,Human Machine Interface,TRUE
+1610,FIL,HVAC Filter (Mechanical),TRUE
+1620,ACT,Hydraulic Actuators,TRUE
+1630,PIOB,I/O Baseplate,TRUE
+1640,PIOCP,I/O CPU,TRUE
+1650,PIOI,I/O instrumentation,TRUE
+1660,PIOPS,I/O power supplies,TRUE
+1670,LVIB,Incoming Breaker (LV),TRUE
+1680,TLD,Infra-red traffic logger (TIRTL),TRUE
+1690,HVIM,Instrumentation & Meters (HV),TRUE
+1700,LVIM,Instrumentation & Meters (LV),TRUE
+1710,TSD,In-Tunnel Smoke Detector,TRUE
+1720,LVIS,Isolation Breaker (LV),TRUE
+1730,CP,ITS Control Panel,TRUE
+1740,ITS,ITS Intelligent Transport System roadside cabinet,TRUE
+1750,JEB,Jersey Barriers,TRUE
+1760,JTF,Jet Fans (JTF),TRUE
+1770,JB,Junction Box (LV),TRUE
+1780,KERB,Kerb and Gutters,TRUE
+1790,LUMS,Lane use management signs,TRUE
+1800,RCS,LED Ramp Control Sign,TRUE
+1810,LIT,Level Indicating Transmitter,TRUE
+1820,TFHE,Lifting & Material Handling Equipment,TRUE
+1830,LGT,Light,TRUE
+1840,LTN,Lighting - Cabinets and Niche,TRUE
+1850,LCP,Lighting Control Panel,TRUE
+1860,LTJB,Lighting Junction Box,TRUE
+1870,LIGP,Lightning Protection,TRUE
+1880,LHD,Linear Heat Detector,TRUE
+1890,LLD,Linear LED Luminaire,TRUE
+1900,TDLL,Longitudinal Ducting,TRUE
+1910,LOLM,Longitudinal Line Marking,TRUE
+1920,LLE,Low Level Egress Lighting,TRUE
+1930,LGTY,LUMS Gantry,TRUE
+1940,LVCLT,LV Final Circuit Cable Ltg,TRUE
+1950,LVCFR,LV Final Circuit Cable Power,TRUE
+1960,LVSC,LV Submain Cable (MSB/MCC to device),TRUE
+1970,MFIP,Main Fire Indication Panel,TRUE
+1980,MFIPB,Main Fire Panel Battery,TRUE
+1990,LVSWB,Main LV Switchboard,TRUE
+2000,MSB,Main Switchboard,TRUE
+2010,TFSH,Maintenance Access Structures and Hatches,TRUE
+2020,DRSCR,MCC & DRS Control Room Equipment,TRUE
+2030,MCC,MCC (Motor Control Centre),TRUE
+2040,MCP,MCP Manual Call Points,TRUE
+2050,MSSB,Mechanical Services Switchboard,TRUE
+2060,TMDT,"Membrane Coatings, Water Diversion & Drip Trays",TRUE
+2070,BFME,Metal Elements,TRUE
+2080,HVCT,Metering CT,TRUE
+2090,HVVT,Metering VT,TRUE
+2100,MW,Microwave,TRUE
+2110,MRP,Misting system pump,TRUE
+2120,MMP,Misting system range pipework,TRUE
+2130,MSV,Misting System Valve,TRUE
+2140,MSZ,Misting Zone Valve,TRUE
+2150,MTR,Motor ,TRUE
+2160,MTP,Motor Protection Relay,TRUE
+2170,MRD,Motorised Relief Dampers,TRUE
+2180,MNCS,Motorway Network Communication System,TRUE
+2190,MMS,Movable Median Systems,TRUE
+2200,UIC,Multivariable Indicating Control,TRUE
+2210,VNA,Noise Attenuators,TRUE
+2220,NSB,Noise Barriers,TRUE
+2230,NEDB,Non Essential Electrical Distribution Board,TRUE
+2240,OMRS,O&M Radio System,TRUE
+2250,OTTX,Oil Type Transformer,TRUE
+2260,OWS,Oil Water Separator,TRUE
+2270,OMCSC,OMCS Cabinets,TRUE
+2280,OMCSN,OMCS Network,TRUE
+2290,SWL,Open Drain/Swale,TRUE
+2300,OMP,Operation and Maintenance phone System,TRUE
+2310,OSD,Optical Smoke Detection unit,TRUE
+2320,HVOB,Outgoing Breaker (HV),TRUE
+2330,OHD,Over Height Vehicle Detection System,TRUE
+2340,MEP,PABX System & Servers,TRUE
+2350,BRPH,Parapets and Piles,TRUE
+2360,VOPM,Particulate Monitoring Equipment,TRUE
+2370,WED,"Particulates, Weather detector - Fog visibility sensor",TRUE
+2380,PAL,Pavement Lighting,TRUE
+2390,PSLM,Pavement Symbols,TRUE
+2400,PEN,Penstock,TRUE
+2410,MRC,Phase inversion / reversing contactor,TRUE
+2420,PH,Phone,TRUE
+2430,GRPI,Pier and Headstock,TRUE
+2440,PRD,Plant Room Doors,TRUE
+2450,BHPF,Plumbing Fixtures,TRUE
+2460,PP,Polypropylene Pipe,TRUE
+2470,PFE,Portable Fire Extinguishers,TRUE
+2480,PLM,Portal Luminance Meter,TRUE
+2490,TSPP,Portal Structure,TRUE
+2500,ZIT,Position Indicating Transmitter,TRUE
+2510,PDB,Power Distribution Board,TRUE
+2520,PFC,Power Factor Correction,TRUE
+2530,TSPT,Precast Tunnel Structure,TRUE
+2540,PCV,Pressure Control Valve,TRUE
+2550,PSV,Pressure relief valve,TRUE
+2560,PSF,Pressurisation fan,TRUE
+2570,PLC,Programmable Logic Controller,TRUE
+2580,HVCTP,Protection CT,TRUE
+2590,HVPR,Protection Relay (HV),TRUE
+2600,LVPR,Protection Relay (LV),TRUE
+2610,GTYP,Protective Coatings and Painted Surfaces,TRUE
+2620,BFPC,Protective Coatings and Painted Surfaces (Building),TRUE
+2630,PAS,Public Address System,TRUE
+2640,CAB,Rack Cabinet,TRUE
+2650,BRRS,Rails and Screens,TRUE
+2660,RPM,Raised Pavement Marking,TRUE
+2670,RX,Receiver,TRUE
+2680,RCP,Reinforced Concrete Pipe,TRUE
+2690,RLY,Relay,TRUE
+2700,PIOC,Remote I/O Cabinet,TRUE
+2710,RIO,Remote I/O Rack,TRUE
+2720,RSA,Rest Areas,TRUE
+2730,RTWL,Retaining Walls,TRUE
+2740,RPAV,Rigid Pavement,TRUE
+2750,RMP,Rising Main Pipe,TRUE
+2760,RMPU,Rising Main Pump,TRUE
+2770,RMV,Rising Main Valve,TRUE
+2780,RL,Road Lighting,TRUE
+2790,RSRE,Road Sign Ramp Exit,TRUE
+2800,RSC,Roadside Cabinets,TRUE
+2810,TSBA,Rock Bolts and Anchors,TRUE
+2820,RTS,Room Temperature Sensors,TRUE
+2830,RTR,Router,TRUE
+2840,RRB,RRB Radio Re-Broadcast System,TRUE
+2850,SFB,Safety Barrier,TRUE
+2860,STS,Seats,TRUE
+2870,TSJG,Segment Joints and Gaskets,TRUE
+2880,SEN,Sensors,TRUE
+2890,STRMC,Servers,TRUE
+2900,SRV,Servers,TRUE
+2910,SHD,SHD Shed,TRUE
+2920,SHL,SHL Shelter,TRUE
+2930,TMSS,Shotcrete Lining,TRUE
+2940,SEP,Side Entry Pits ,TRUE
+2950,SFP,Sign Face Plate,TRUE
+2960,SGP,Sign Post,TRUE
+2970,SIG,Signs,TRUE
+2980,BRSL,Slab,TRUE
+2990,SVDS,Smoky Vehicle Detection System,TRUE
+3000,SS,Soft Starter,TRUE
+3010,FPSC,Sounder Circuit,TRUE
+3020,SPK,Speaker,TRUE
+3030,SC,Speed/ Frequency Control ,TRUE
+3040,TMDW,Spoon Drain and Weep holes,TRUE
+3050,SPD,Spoon Drains,TRUE
+3070,SNSB,Steel noise barrier panels,TRUE
+3080,SV,Stop Valve,TRUE
+3090,SWD,Stormwater detention tank,TRUE
+3100,SWPU,Stormwater Drainage Pumps,TRUE
+3110,SWP,Stormwater pipe,TRUE
+3120,SWPT,Stormwater pit,TRUE
+3130,SWT,Stormwater treatment device,TRUE
+3140,STRMS,STREAMS System,TRUE
+3150,LST,Strobe Light,TRUE
+3160,SFIP ,Sub Fire Indication Panel,TRUE
+3170,TFER,Substation and Equipment Rooms,TRUE
+3180,TLPS,Sump structure,TRUE
+3190,FGRC,Suppressant gas release controller,TRUE
+3200,FGSV,Suppressant gas release solenoid valve,TRUE
+3210,FGRW,Suppressant gas release warning sign,TRUE
+3220,FGSB,Suppressant gas system - gas storage bottle,TRUE
+3230,FGSM,Suppressant gas system manifold,TRUE
+3240,SRP,Surface Road Drainage pipe,TRUE
+3250,SRPT,Surface Road Drainage pit,TRUE
+3260,SW,Switch,TRUE
+3270,LVMSB,Switchboard,TRUE
+3280,HVSB,Switchboard and Cubicles (HV),TRUE
+3290,CHR,Switching Battery and Charger,TRUE
+3300,TBL,Table,TRUE
+3310,TID,Thermal Incident Detection,TRUE
+3320,THM,Thermistor,TRUE
+3330,TPTT,Tiled Surfaces,TRUE
+3340,TOI,Toilet,TRUE
+3350,TLDS,Traffic Loop & Detection System,TRUE
+3360,TSC,Traffic Signal Controller,TRUE
+3370,TSL,Traffic Signal Lantern,TRUE
+3380,TX,Transmitter,TRUE
+3390,LALM,Transverse (Lateral) Line Marking,TRUE
+3400,LTT,Tunnel Carriageway Lighting,TRUE
+3410,TCS,Tunnel closure system,TRUE
+3420,TWP,Tunnel Groundwater pipe,TRUE
+3430,TWPT,Tunnel Groundwater pit,TRUE
+3440,TCM,Tunnel Lining Crack Meter,TRUE
+3450,TDM,Tunnel Lining Displacement Monitoring,TRUE
+3460,TMS,Tunnel Message Signs,TRUE
+3470,TSTS,Tunnel Structure,TRUE
+3480,AFM,Ultrasonic Air Velocity Monitor,TRUE
+3490,XIT,Unclassified Indicating Transmitter,TRUE
+3500,UPS,Uninterruptible Power Supplies,TRUE
+3510,BAT,UPS Battery,TRUE
+3520,VLV,Valves,TRUE
+3530,VMS,Variable Message Signs (VMS),TRUE
+3540,VSD,Variable Speed Drive,TRUE
+3550,VSS,Variable Speed Limit Signs,TRUE
+3560,VEG,Vegetation and Landscape,TRUE
+3570,VDS,Vehicle Detection System,TRUE
+3580,VLUV,Ventilation Louvers,TRUE
+3590,TSVS,Ventilation Stack Structure,TRUE
+3600,TDRS,Vertical Risers and Shafts,TRUE
+3610,VIB,Vibration monitoring sensors,TRUE
+3620,VWS,Video Wall System,TRUE
+3630,WPE,Wall panel dirt accumulation illuminance PE cell,TRUE
+3640,TPFF,Wall Panel Framework and Fixings,TRUE
+3650,TPWW,Wall Panels,TRUE
+3660,BHCH,Water Heaters and Chillers,TRUE
+3670,TNK,Water Tank,TRUE
+3680,LTE,Wayfinding Emergency Exit Lighting,TRUE
+3690,WST,Weigh Station,TRUE
+3700,TXTS,Winding Temp Sensor,TRUE
+3710,WRB,"Wire Rope Barrier, Post and Terminals",TRUE
+3720,WAP,Wireless access point (WI-FI hotspot),TRUE
+3730,FPWO,Wireless Output,TRUE
+3740,BFWE,Wood Elements,TRUE
+3750,WS,Workstation (Desk),TRUE
+3760,PSS,XP Pressurisation Sensor,TRUE
+3770,SR,Y Strainer,TRUE
+3780,ZLM,Zebra crossing,TRUE

@@ -57,6 +57,9 @@
                     type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
+            <column defaultValue="UNK"
+                    name="type"
+                    type="VARCHAR(10)"/>
             <column name="discipline" type="VARCHAR"/>
         </createTable>
         <addUniqueConstraint columnNames="key"

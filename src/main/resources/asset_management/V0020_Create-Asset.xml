@@ -37,30 +37,7 @@
                              validate="true"/>
         <loadData file="asset_management/data/V0020_Asset_Status.csv" tableName="asset_status"/>
 
-        <!--
-        Asset Type Table
-        -->
-        <createTable tableName="asset_type">
-            <column name="id" type="bigint">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_asset_type"/>
-            </column>
-            <column name="type" type="VARCHAR(8)">
-                <constraints nullable="false" />
-            </column>
-            <column name="description" type="VARCHAR(50)"/>
-            <column name="active" type="bool" defaultValue="true">
-                <constraints nullable="false" />
-            </column>
-        </createTable>
-        <addUniqueConstraint columnNames="type"
-                             constraintName="asset_type"
-                             deferrable="true"
-                             disabled="false"
-                             tableName="asset_type"
-                             validate="true"/>
-        <loadData file="asset_management/data/V0020_Asset_Type.csv" tableName="asset_type"/>
+
 
         <!--
         Asset Table
@@ -78,7 +55,7 @@
             <column name="key" type="VARCHAR(12)">
                 <constraints nullable="false" />
             </column>
-            <column name="type" type="VARCHAR(8)">
+            <column name="type" type="VARCHAR(10)">
                 <constraints nullable="false" />
             </column>
             <column name="description" type="VARCHAR(80)"/>
@@ -97,7 +74,7 @@
                                   baseTableName="asset"
                                   constraintName="fk_asset_asset_type"
                                   referencedColumnNames="type"
-                                  referencedTableName="asset_type"
+                                  referencedTableName="type"
                                   validate="true"/>
         <addForeignKeyConstraint  baseColumnNames="status"
                                   baseTableName="asset"

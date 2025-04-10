@@ -23,6 +23,10 @@ data class AssetEntity (
     val linear: Boolean = false,
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type", referencedColumnName = "type")
+    val type: TypeEntity? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent", referencedColumnName = "key")
     val parent: AssetEntity? = null,
 

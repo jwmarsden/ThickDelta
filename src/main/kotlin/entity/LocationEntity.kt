@@ -1,6 +1,7 @@
 package com.ventia.entities
 
 import com.ventia.entity.AssetEntity
+import com.ventia.entity.TypeEntity
 import jakarta.persistence.*
 import org.hibernate.query.Query
 
@@ -26,6 +27,10 @@ data class LocationEntity (
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "discipline", referencedColumnName = "discipline")
     val discipline: DisciplineEntity? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type", referencedColumnName = "type", nullable = true, columnDefinition = "VARCHAR(10) default 'UNK'")
+    val type: TypeEntity? = null,
 
     @Column(nullable = false, name = "MAINTAINABLE_FLAG", columnDefinition="BOOLEAN DEFAULT FALSE")
     val maintainableFlag: Boolean = false,

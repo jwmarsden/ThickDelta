@@ -2,6 +2,7 @@ package com.ventia.controller
 
 import com.ventia.entities.LocationEntity
 import com.ventia.entities.SystemEntity
+import com.ventia.entity.AssetEntity
 import com.ventia.model.AssetModel
 
 class AssetController(override val model: AssetModel) : Controller(model) {
@@ -22,12 +23,16 @@ class AssetController(override val model: AssetModel) : Controller(model) {
         return model.getChildrenInSystem(parent, systemString)
     }
 
-    fun getParentInSystem(child: LocationEntity, system: SystemEntity): LocationEntity {
+    fun getParentInSystem(child: LocationEntity, system: SystemEntity): LocationEntity? {
         return model.getParentInSystem(child , system)
     }
 
-    fun getParentInSystem(child: LocationEntity, systemString: String): LocationEntity {
+    fun getParentInSystem(child: LocationEntity, systemString: String): LocationEntity? {
         return model.getParentInSystem(child, systemString)
+    }
+
+    fun getParentInSystem(child: AssetEntity, system: SystemEntity): LocationEntity? {
+        return model.getParentInSystem(child, system)
     }
 
 }
