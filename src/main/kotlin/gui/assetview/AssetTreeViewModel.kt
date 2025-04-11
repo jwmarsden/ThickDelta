@@ -106,7 +106,11 @@ class AssetTreeViewModel(private val controller: AssetController, root: TreeNode
         val locationRoots: List<LocationEntity> = controller.lookupLocationRoots(system)
         for (root in locationRoots) {
             roots.add(root)
-            locationTreeNodes[root] = AssetTreeViewNode(AssetTreeNodeType.ROOT, root, true)
+            if(root.maintainableFlag) {
+                locationTreeNodes[root] = AssetTreeViewNode(AssetTreeNodeType.LOCATION, root, true)
+            } else {
+                locationTreeNodes[root] = AssetTreeViewNode(AssetTreeNodeType.ROOT, root, true)
+            }
         }
     }
 

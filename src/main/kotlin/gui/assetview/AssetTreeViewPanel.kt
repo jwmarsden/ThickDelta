@@ -35,7 +35,7 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
 
     private var lastSelectedLocation: LocationEntity? = null
     private var lastSelectedAsset: AssetEntity? = null
-    private val top = DefaultMutableTreeNode("Road Hierarchy Root")
+    private val top = DefaultMutableTreeNode("Hierarchy Root")
 
     override fun addNotify() {
         super.addNotify()
@@ -54,7 +54,7 @@ class AssetTreeViewPanel(private val controller: AssetController) : JPanel(), Tr
         val systemDropdownValues = systemList.map { it }.toTypedArray()
 
         val systemDropdown: JComboBox<SystemEntity> = JComboBox<SystemEntity>(systemDropdownValues)
-        systemDropdown.setForeground(Color.LIGHT_GRAY)
+        systemDropdown.setForeground(Color.GRAY)
         systemDropdown.setBackground(Color.WHITE)
 
         systemDropdown.addActionListener(SystemActionListener())
