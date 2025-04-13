@@ -4,11 +4,11 @@ import com.ventia.entities.LocationEntity
 import jakarta.persistence.*
 
 @Entity
-@SequenceGenerator(name = "work-scheduler-id-seq", sequenceName = "WORK_SCHEDULER_ID_SEQ", initialValue = 100, allocationSize = 10)
-@Table(name = "WORK_SCHEDULER")
-data class WorkSchedulerEntity (
+@SequenceGenerator(name = "work-schedule-id-seq", sequenceName = "WORK_SCHEDULER_ID_SEQ", initialValue = 100, allocationSize = 10)
+@Table(name = "WORK_SCHEDULE")
+data class ActivityPlanEntity (
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "work-scheduler-id-seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "work-schedule-id-seq")
     @Column(nullable = false)
     val id: Long = -1,
 
@@ -33,7 +33,7 @@ data class WorkSchedulerEntity (
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-        other as WorkSchedulerEntity
+        other as ActivityPlanEntity
         return key == other.key
     }
 
@@ -43,8 +43,8 @@ data class WorkSchedulerEntity (
 
     enum class TYPE {
         CYCLICAL,
+        METER_BASED,
         DATE_LIST,
-        METER_BASED
     }
 }
 

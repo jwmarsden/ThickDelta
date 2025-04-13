@@ -42,7 +42,8 @@ class AssetHierarchyView(private val controller: AssetController): JPanel() {
 
         splitPane.leftComponent = splitPanel
 
-        splitPane.rightComponent = JPanel()
+        val assetDetailView: AssetDetailView = AssetDetailView(controller)
+        splitPane.rightComponent = assetDetailView
 
         add(splitPane, BorderLayout.CENTER)
     }

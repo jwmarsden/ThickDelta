@@ -21,11 +21,15 @@ import java.awt.event.WindowEvent
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.Statement
+import javax.swing.UIManager
 
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
+
+    //UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+    //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 
     val c: Connection = DriverManager.getConnection("jdbc:hsqldb:file:target/test/db", "SA", "")
     val s: Statement = c.createStatement()

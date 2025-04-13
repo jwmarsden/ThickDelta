@@ -49,6 +49,7 @@ class AssetModel(sessionFactory: SessionFactory) : Model(sessionFactory) {
             val query: Query<LocationEntity> = session!!.createQuery(hql, LocationEntity::class.java)
             query.setParameter("system", system.system);
             rootsLocations = query.resultList;
+
             return rootsLocations
         }
     }
