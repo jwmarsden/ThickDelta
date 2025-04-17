@@ -7,6 +7,8 @@
 
     <includeAll path="asset_management" labels="core"/>
 
+    <includeAll path="data" labels="core"/>
+
     <includeAll path="development" labels="dev"/>
 
 </databaseChangeLog>

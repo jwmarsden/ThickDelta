@@ -30,6 +30,7 @@ fun main() {
 
     //UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
     //UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
     val c: Connection = DriverManager.getConnection("jdbc:hsqldb:file:target/test/db", "SA", "")
     val s: Statement = c.createStatement()
