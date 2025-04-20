@@ -14,36 +14,36 @@ INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
 VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '6203', 'North South Motorway', 'ACTIVE', 'ROAD');
 
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62038', 'North South Motorway, NorthBound Offramp to Grange Road', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62038', 'North South Motorway, Northbound Off-ramp to Grange Road', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62045', 'North South Motorway, SouthBound Onramp from Sir Donald Bradman Drive', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62045', 'North South Motorway, Southbound On-ramp from Sir Donald Bradman Drive', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62046', 'North South Motorway, SouthBound Offramp to Richmond Road', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62046', 'North South Motorway, Southbound Off-ramp to Richmond Road', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62047', 'North South Motorway, SouthBound Onramp from James Congdon Drive', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62047', 'North South Motorway, Southbound On-ramp from James Congdon Drive', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62048', 'North South Motorway, NorthBound Offramp to James Congdon Drive', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62048', 'North South Motorway, Northbound Off-ramp to James Congdon Drive', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62049', 'North South Motorway, NorthBound Onramp from Richmond Road', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62049', 'North South Motorway, Northbound On-ramp from Richmond Road', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62050', 'North South Motorway, NorthBound Offramp to Richmond Road', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62050', 'North South Motorway, Northbound Off-ramp to Richmond Road', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62051', 'North South Motorway, SouthBound Offramp to Anzac Hwy', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62051', 'North South Motorway, Southbound Off-ramp to Anzac Highway', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62052', 'North South Motorway, NorthBound Onramp from Anzac Highway', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62052', 'North South Motorway, Northbound On-ramp from Anzac Highway', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62053', 'North South Motorway, SouthBound Offramp to Cross Road (Via South Road)', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62053', 'North South Motorway, Southbound Off-ramp to Cross Road (Via South Road)', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62054', 'North South Motorway, SouthBound Onramp from Anzac Hwy', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62054', 'North South Motorway, Southbound On-ramp from Anzac Highway', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62055', 'North South Motorway, NorthBound OnRamp from Cross Road', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62055', 'North South Motorway, Northbound On-ramp from Cross Road', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62056', 'North South Motorway, NorthBound Offramp to Anzac Hwy', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62056', 'North South Motorway, Northbound Off-ramp to Anzac Highway', 'ACTIVE', 'ROAD');
 
 --INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
 --VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62037', 'South Road', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62037', 'South Road, SouthBound Onramp from Manton Street', 'ACTIVE', 'ROAD');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62037', 'South Road, Southbound On-ramp from Manton Street', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
 VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '62035', 'South Road', 'ACTIVE', 'ROAD');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
@@ -75,7 +75,7 @@ VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, '06200', 'Richmond Road', 'ACTIVE', 'ROA
 
 
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
-VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, 'NCRN006', 'Brookman Ave', 'ACTIVE', 'NCRN');
+VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, 'NCRN006', 'Brookman Avenue', 'ACTIVE', 'NCRN');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)
 VALUES (NEXT VALUE FOR LOCATION_ID_SEQ, 'NCRN007', 'Manchester Street', 'ACTIVE', 'NCRN');
 INSERT INTO LOCATION (ID, KEY, DESCRIPTION, STATUS, TYPE)

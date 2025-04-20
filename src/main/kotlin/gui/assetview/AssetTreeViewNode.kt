@@ -5,14 +5,14 @@ import com.ventia.entity.AssetEntity
 import com.ventia.gui.assetview.AssetTreeNodeType
 import javax.swing.tree.DefaultMutableTreeNode
 
-
-
 class AssetTreeViewNode(val type: AssetTreeNodeType, userObject: Any?, allowsChildren: Boolean): DefaultMutableTreeNode(userObject, allowsChildren) {
+
+    final val includeType: Boolean = false;
 
     override fun toString(): String {
         if(type == AssetTreeNodeType.LOCATION) {
             val locationObject = userObject as LocationEntity
-            return if(locationObject.type != null && !locationObject.type.type.equals("") && !locationObject.type.type.equals("UNK")) {
+            return if(includeType && locationObject.type != null && !locationObject.type.type.equals("") && !locationObject.type.type.equals("UNK")) {
                 "${locationObject.key} - (${locationObject.type}) ${locationObject.description}"
             } else {
                 "${locationObject.key} - ${locationObject.description}"

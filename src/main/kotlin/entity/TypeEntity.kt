@@ -22,15 +22,14 @@ data class TypeEntity(
     @Column(nullable = false)
     val active: Boolean = false,
 ) {
-
-    final override fun equals(other: Any?): Boolean {
+    override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null) return false
         other as TypeEntity
         return id != null && id == other.id
     }
 
-    final override fun hashCode(): Int =
+    override fun hashCode(): Int =
         type.hashCode()
 
     @Override

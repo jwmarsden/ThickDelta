@@ -5,6 +5,13 @@ import com.ventia.entities.*
 import com.ventia.entity.AssetEntity
 import com.ventia.entity.AssetStatusEntity
 import com.ventia.entity.TypeEntity
+import com.ventia.entity.classification.ClassificationEntity
+import com.ventia.entity.classification.ClassificationLocationEntity
+import com.ventia.entity.classification.ClassificationProductEntity
+import com.ventia.entity.classification.UniclassElementFunctionEntity
+import com.ventia.entity.classification.UniclassProductEntity
+import com.ventia.entity.classification.UniclassSpaceLocationEntity
+import com.ventia.entity.classification.UniclassSystemEntity
 import com.ventia.gui.MainFrame
 import com.ventia.gui.assetview.AssetHierarchyView
 import com.ventia.model.AssetModel
@@ -40,6 +47,13 @@ fun main() {
     println(LiquibaseUtil.getBuildVersionInfo())
 
     val sessionFactory: SessionFactory = Configuration()
+        .addAnnotatedClass(UniclassElementFunctionEntity::class.java)
+        .addAnnotatedClass(UniclassSystemEntity::class.java)
+        .addAnnotatedClass(UniclassProductEntity::class.java)
+        .addAnnotatedClass(UniclassSpaceLocationEntity::class.java)
+        .addAnnotatedClass(ClassificationEntity::class.java)
+        .addAnnotatedClass(ClassificationLocationEntity::class.java)
+        .addAnnotatedClass(ClassificationProductEntity::class.java)
         .addAnnotatedClass(TypeEntity::class.java)
         .addAnnotatedClass(DisciplineEntity::class.java)
         .addAnnotatedClass(SystemEntity::class.java)

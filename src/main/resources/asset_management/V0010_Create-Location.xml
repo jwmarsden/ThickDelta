@@ -61,6 +61,8 @@
                     name="type"
                     type="VARCHAR(10)"/>
             <column name="discipline" type="VARCHAR"/>
+            <column name="classification_id"
+                    type="BIGINT"/>
         </createTable>
         <addUniqueConstraint columnNames="key"
                              constraintName="uc_location_key"
@@ -125,6 +127,14 @@
                                  constraintName="FK_LOCATION_SYSTEM_HIERARCHY_ON_SYSTEM"
                                  referencedColumnNames="id"
                                  referencedTableName="SYSTEM"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="classification_id"
+                                 baseTableName="LOCATION"
+                                 constraintName="FK_LOCATION_ON_CLASSIFICATION"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CLASSIFICATION"/>
+
     </changeSet>
 
 
