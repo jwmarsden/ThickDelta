@@ -8,7 +8,7 @@
 
 
     <changeSet id="Load-Classifications"
-               author="jmarsden">
+               author="jwm">
 
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Entity.csv" tableName="UNICLASS_ENTITY"/>
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Element_Function.csv" tableName="UNICLASS_ELEMENT_FUNCTION"/>

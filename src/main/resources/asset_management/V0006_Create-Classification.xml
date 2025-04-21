@@ -1,319 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
-
-    <changeSet id="1745231633896-1"
-               author="jwm">
-        <createSequence incrementBy="10"
-                        sequenceName="CLASSIFICATION_ID_SEQ"
-                        startValue="200"/>
+    <changeSet id="1745232663206-1" author="jwm">
+        <createSequence incrementBy="10" sequenceName="CLASSIFICATION_ID_SEQ" startValue="200"/>
     </changeSet>
-    <changeSet id="1745231633896-2"
-               author="jwm">
-        <createSequence incrementBy="10"
-                        sequenceName="UNICLASS_COMPLEX_ID_SEQ"
-                        startValue="200"/>
+    <changeSet id="1745232663206-2" author="jwm">
+        <createSequence incrementBy="10" sequenceName="UNICLASS_COMPLEX_ID_SEQ" startValue="200"/>
     </changeSet>
-    <changeSet id="1745231633896-3"
-               author="jwm">
-        <createSequence incrementBy="10"
-                        sequenceName="UNICLASS_ENTITY_ID_SEQ"
-                        startValue="200"/>
+    <changeSet id="1745232663206-3" author="jwm">
+        <createSequence incrementBy="10" sequenceName="UNICLASS_ENTITY_ID_SEQ" startValue="200"/>
     </changeSet>
-    <changeSet id="1745231633896-4"
-               author="jwm">
-        <createSequence incrementBy="10"
-                        sequenceName="UNICLASS_FUNCTION_ID_SEQ"
-                        startValue="200"/>
+    <changeSet id="1745232663206-4" author="jwm">
+        <createSequence incrementBy="10" sequenceName="UNICLASS_FUNCTION_ID_SEQ" startValue="200"/>
     </changeSet>
-    <changeSet id="1745231633896-5"
-               author="jwm">
-        <createSequence incrementBy="10"
-                        sequenceName="UNICLASS_LOCATION_ID_SEQ"
-                        startValue="200"/>
+    <changeSet id="1745232663206-5" author="jwm">
+        <createSequence incrementBy="10" sequenceName="UNICLASS_LOCATION_ID_SEQ" startValue="200"/>
     </changeSet>
-    <changeSet id="1745231633896-6"
-               author="jwm">
-        <createSequence incrementBy="10"
-                        sequenceName="UNICLASS_PRODUCT_ID_SEQ"
-                        startValue="200"/>
+    <changeSet id="1745232663206-6" author="jwm">
+        <createSequence incrementBy="10" sequenceName="UNICLASS_PRODUCT_ID_SEQ" startValue="200"/>
     </changeSet>
-    <changeSet id="1745231633896-7"
-               author="jwm">
-        <createSequence incrementBy="10"
-                        sequenceName="UNICLASS_SYSTEM_ID_SEQ"
-                        startValue="200"/>
+    <changeSet id="1745232663206-7" author="jwm">
+        <createSequence incrementBy="10" sequenceName="UNICLASS_SYSTEM_ID_SEQ" startValue="200"/>
     </changeSet>
-    <changeSet id="1745231633896-8"
-               author="jwm">
+    <changeSet id="1745232663206-8" author="jwm">
         <createTable tableName="CLASSIFICATION">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_classification"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_classification"/>
             </column>
-            <column name="description"
-                    type="VARCHAR(150)"/>
+            <column name="description" type="VARCHAR(150)"/>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-9"
-               author="jwm">
+    <changeSet id="1745232663206-9" author="jwm">
         <createTable tableName="CLASSIFICATION_COMPLEX">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_classification_complex"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_classification_complex"/>
             </column>
-            <column name="complex"
-                    type="VARCHAR"/>
+            <column name="complex" type="VARCHAR"/>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-10"
-               author="jwm">
+    <changeSet id="1745232663206-10" author="jwm">
         <createTable tableName="CLASSIFICATION_ENTITY">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_classification_entity"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_classification_entity"/>
             </column>
-            <column name="entity"
-                    type="VARCHAR"/>
+            <column name="entity" type="VARCHAR"/>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-11"
-               author="jwm">
+    <changeSet id="1745232663206-11" author="jwm">
         <createTable tableName="CLASSIFICATION_PRODUCT">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_classification_product"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_classification_product"/>
             </column>
-            <column name="ELEMENT_FUNCTION"
-                    type="VARCHAR"/>
-            <column name="system"
-                    type="VARCHAR"/>
-            <column name="product"
-                    type="VARCHAR"/>
+            <column name="ELEMENT_FUNCTION" type="VARCHAR"/>
+            <column name="system" type="VARCHAR"/>
+            <column name="product" type="VARCHAR"/>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-12"
-               author="jwm">
+    <changeSet id="1745232663206-12" author="jwm">
         <createTable tableName="CLASSIFICATION_SPACE_LOCATION">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_classification_space_location"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_classification_space_location"/>
             </column>
-            <column name="SPACE_LOCATION"
-                    type="VARCHAR"/>
+            <column name="SPACE_LOCATION" type="VARCHAR"/>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-13"
-               author="jwm">
+    <changeSet id="1745232663206-13" author="jwm">
         <createTable tableName="UNICLASS_COMPLEX">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_uniclass_complex"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_uniclass_complex"/>
             </column>
-            <column name="code"
-                    type="VARCHAR(15)">
+            <column name="code" type="VARCHAR(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="GROUP_CODE"
-                    type="VARCHAR(2)">
+            <column name="GROUP_CODE" type="VARCHAR(2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="SUB_GROUP_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="SECTION_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="OBJECT_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="title"
-                    type="VARCHAR(150)"/>
-            <column name="active"
-                    type="BOOLEAN">
+            <column name="SUB_GROUP_CODE" type="VARCHAR(2)"/>
+            <column name="SECTION_CODE" type="VARCHAR(2)"/>
+            <column name="OBJECT_CODE" type="VARCHAR(2)"/>
+            <column name="title" type="VARCHAR(150)"/>
+            <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-14"
-               author="jwm">
+    <changeSet id="1745232663206-14" author="jwm">
         <createTable tableName="UNICLASS_ELEMENT_FUNCTION">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_uniclass_element_function"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_uniclass_element_function"/>
             </column>
-            <column name="code"
-                    type="VARCHAR(15)">
+            <column name="code" type="VARCHAR(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="GROUP_CODE"
-                    type="VARCHAR(2)">
+            <column name="GROUP_CODE" type="VARCHAR(2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="SUB_GROUP_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="SECTION_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="OBJECT_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="title"
-                    type="VARCHAR(150)"/>
-            <column name="active"
-                    type="BOOLEAN">
+            <column name="SUB_GROUP_CODE" type="VARCHAR(2)"/>
+            <column name="SECTION_CODE" type="VARCHAR(2)"/>
+            <column name="OBJECT_CODE" type="VARCHAR(2)"/>
+            <column name="title" type="VARCHAR(150)"/>
+            <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-15"
-               author="jwm">
+    <changeSet id="1745232663206-15" author="jwm">
         <createTable tableName="UNICLASS_ENTITY">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_uniclass_entity"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_uniclass_entity"/>
             </column>
-            <column name="code"
-                    type="VARCHAR(15)">
+            <column name="code" type="VARCHAR(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="GROUP_CODE"
-                    type="VARCHAR(2)">
+            <column name="GROUP_CODE" type="VARCHAR(2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="SUB_GROUP_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="SECTION_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="OBJECT_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="title"
-                    type="VARCHAR(150)"/>
-            <column name="active"
-                    type="BOOLEAN">
+            <column name="SUB_GROUP_CODE" type="VARCHAR(2)"/>
+            <column name="SECTION_CODE" type="VARCHAR(2)"/>
+            <column name="OBJECT_CODE" type="VARCHAR(2)"/>
+            <column name="title" type="VARCHAR(150)"/>
+            <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-16"
-               author="jwm">
+    <changeSet id="1745232663206-16" author="jwm">
         <createTable tableName="UNICLASS_PRODUCT">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_uniclass_product"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_uniclass_product"/>
             </column>
-            <column name="code"
-                    type="VARCHAR(15)">
+            <column name="code" type="VARCHAR(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="GROUP_CODE"
-                    type="VARCHAR(2)">
+            <column name="GROUP_CODE" type="VARCHAR(2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="SUB_GROUP_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="SECTION_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="OBJECT_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="title"
-                    type="VARCHAR(150)"/>
-            <column name="active"
-                    type="BOOLEAN">
+            <column name="SUB_GROUP_CODE" type="VARCHAR(2)"/>
+            <column name="SECTION_CODE" type="VARCHAR(2)"/>
+            <column name="OBJECT_CODE" type="VARCHAR(2)"/>
+            <column name="title" type="VARCHAR(150)"/>
+            <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-17"
-               author="jwm">
+    <changeSet id="1745232663206-17" author="jwm">
         <createTable tableName="UNICLASS_SPACE_LOCATION">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_uniclass_space_location"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_uniclass_space_location"/>
             </column>
-            <column name="code"
-                    type="VARCHAR(15)">
+            <column name="code" type="VARCHAR(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="GROUP_CODE"
-                    type="VARCHAR(2)">
+            <column name="GROUP_CODE" type="VARCHAR(2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="SUB_GROUP_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="SECTION_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="OBJECT_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="title"
-                    type="VARCHAR(150)"/>
-            <column name="active"
-                    type="BOOLEAN">
+            <column name="SUB_GROUP_CODE" type="VARCHAR(2)"/>
+            <column name="SECTION_CODE" type="VARCHAR(2)"/>
+            <column name="OBJECT_CODE" type="VARCHAR(2)"/>
+            <column name="title" type="VARCHAR(150)"/>
+            <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-18"
-               author="jwm">
+    <changeSet id="1745232663206-18" author="jwm">
         <createTable tableName="UNICLASS_SYSTEM">
-            <column name="id"
-                    type="BIGINT">
-                <constraints nullable="false"
-                             primaryKey="true"
-                             primaryKeyName="pk_uniclass_system"/>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_uniclass_system"/>
             </column>
-            <column name="code"
-                    type="VARCHAR(15)">
+            <column name="code" type="VARCHAR(15)">
                 <constraints nullable="false"/>
             </column>
-            <column name="GROUP_CODE"
-                    type="VARCHAR(2)">
+            <column name="GROUP_CODE" type="VARCHAR(2)">
                 <constraints nullable="false"/>
             </column>
-            <column name="SUB_GROUP_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="SECTION_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="OBJECT_CODE"
-                    type="VARCHAR(2)"/>
-            <column name="title"
-                    type="VARCHAR(150)"/>
-            <column name="active"
-                    type="BOOLEAN">
+            <column name="SUB_GROUP_CODE" type="VARCHAR(2)"/>
+            <column name="SECTION_CODE" type="VARCHAR(2)"/>
+            <column name="OBJECT_CODE" type="VARCHAR(2)"/>
+            <column name="title" type="VARCHAR(150)"/>
+            <column name="active" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet id="1745231633896-19"
-               author="jwm">
-        <addUniqueConstraint columnNames="code"
-                             constraintName="uc_uniclass_complex_code"
-                             tableName="UNICLASS_COMPLEX"/>
+    <changeSet id="1745232663206-19" author="jwm">
+        <addUniqueConstraint columnNames="code" constraintName="uc_uniclass_complex_code" tableName="UNICLASS_COMPLEX"/>
     </changeSet>
-    <changeSet id="1745231633896-20"
-               author="jwm">
-        <addUniqueConstraint columnNames="code"
-                             constraintName="uc_uniclass_element_function_code"
+    <changeSet id="1745232663206-20" author="jwm">
+        <addUniqueConstraint columnNames="code" constraintName="uc_uniclass_element_function_code"
                              tableName="UNICLASS_ELEMENT_FUNCTION"/>
     </changeSet>
+    <changeSet id="1745232663206-21" author="jwm">
+        <addUniqueConstraint columnNames="code" constraintName="uc_uniclass_entity_code" tableName="UNICLASS_ENTITY"/>
+    </changeSet>
+    <changeSet id="1745232663206-22" author="jwm">
+        <addUniqueConstraint columnNames="code" constraintName="uc_uniclass_product_code" tableName="UNICLASS_PRODUCT"/>
+    </changeSet>
+    <changeSet id="1745232663206-23" author="jwm">
+        <addUniqueConstraint columnNames="code" constraintName="uc_uniclass_space_location_code"
+                             tableName="UNICLASS_SPACE_LOCATION"/>
+    </changeSet>
+    <changeSet id="1745232663206-24" author="jwm">
+        <addUniqueConstraint columnNames="code" constraintName="uc_uniclass_system_code" tableName="UNICLASS_SYSTEM"/>
+    </changeSet>
+    <changeSet id="1745232663206-25" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="complex" baseTableName="CLASSIFICATION_COMPLEX"
+                                 constraintName="FK_CLASSIFICATION_COMPLEX_ON_COMPLEX" referencedColumnNames="code"
+                                 referencedTableName="UNICLASS_COMPLEX"/>
+    </changeSet>
+    <changeSet id="1745232663206-26" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="CLASSIFICATION_COMPLEX"
+                                 constraintName="FK_CLASSIFICATION_COMPLEX_ON_ID" referencedColumnNames="id"
+                                 referencedTableName="CLASSIFICATION"/>
+    </changeSet>
+    <changeSet id="1745232663206-27" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="entity" baseTableName="CLASSIFICATION_ENTITY"
+                                 constraintName="FK_CLASSIFICATION_ENTITY_ON_ENTITY" referencedColumnNames="code"
+                                 referencedTableName="UNICLASS_ENTITY"/>
+    </changeSet>
+    <changeSet id="1745232663206-28" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="CLASSIFICATION_ENTITY"
+                                 constraintName="FK_CLASSIFICATION_ENTITY_ON_ID" referencedColumnNames="id"
+                                 referencedTableName="CLASSIFICATION"/>
+    </changeSet>
+    <changeSet id="1745232663206-29" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="ELEMENT_FUNCTION" baseTableName="CLASSIFICATION_PRODUCT"
+                                 constraintName="FK_CLASSIFICATION_PRODUCT_ON_ELEMENT_FUNCTION"
+                                 referencedColumnNames="code" referencedTableName="UNICLASS_ELEMENT_FUNCTION"/>
+    </changeSet>
+    <changeSet id="1745232663206-30" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="CLASSIFICATION_PRODUCT"
+                                 constraintName="FK_CLASSIFICATION_PRODUCT_ON_ID" referencedColumnNames="id"
+                                 referencedTableName="CLASSIFICATION"/>
+    </changeSet>
+    <changeSet id="1745232663206-31" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="product" baseTableName="CLASSIFICATION_PRODUCT"
+                                 constraintName="FK_CLASSIFICATION_PRODUCT_ON_PRODUCT" referencedColumnNames="code"
+                                 referencedTableName="UNICLASS_PRODUCT"/>
+    </changeSet>
+    <changeSet id="1745232663206-32" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="system" baseTableName="CLASSIFICATION_PRODUCT"
+                                 constraintName="FK_CLASSIFICATION_PRODUCT_ON_SYSTEM" referencedColumnNames="code"
+                                 referencedTableName="UNICLASS_SYSTEM"/>
+    </changeSet>
+    <changeSet id="1745232663206-33" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="CLASSIFICATION_SPACE_LOCATION"
+                                 constraintName="FK_CLASSIFICATION_SPACE_LOCATION_ON_ID" referencedColumnNames="id"
+                                 referencedTableName="CLASSIFICATION"/>
+    </changeSet>
+    <changeSet id="1745232663206-34" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="SPACE_LOCATION" baseTableName="CLASSIFICATION_SPACE_LOCATION"
+                                 constraintName="FK_CLASSIFICATION_SPACE_LOCATION_ON_SPACE_LOCATION"
+                                 referencedColumnNames="code" referencedTableName="UNICLASS_SPACE_LOCATION"/>
+    </changeSet>
 
-    <!-- Large changelog file. The first 20 changeSets are shown.  -->
 </databaseChangeLog>
