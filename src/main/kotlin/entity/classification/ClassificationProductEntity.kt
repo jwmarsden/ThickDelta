@@ -15,7 +15,7 @@ class ClassificationProductEntity: ClassificationEntity() {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "function", referencedColumnName = "code")
+    @JoinColumn(name = "ELEMENT_FUNCTION", referencedColumnName = "code")
     val function: UniclassElementFunctionEntity? = null
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,6 +27,6 @@ class ClassificationProductEntity: ClassificationEntity() {
     val product: UniclassProductEntity? = null
 
     override fun getPathString(): String {
-        return product?.code ?: "Un"
+        return "${function?.code}/${system?.code}/${product?.code}"
     }
 }

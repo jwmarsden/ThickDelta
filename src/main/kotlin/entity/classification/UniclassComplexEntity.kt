@@ -10,11 +10,11 @@ import jakarta.persistence.Table
 import org.hibernate.proxy.HibernateProxy
 
 @Entity
-@SequenceGenerator(name = "uniclass-entity-id-seq", sequenceName = "UNICLASS_ENTITY_ID_SEQ", initialValue = 200, allocationSize = 10)
-@Table(name = "UNICLASS_ENTITY")
-data class UniclassEntityEntity (
+@SequenceGenerator(name = "uniclass-complex-id-seq", sequenceName = "UNICLASS_COMPLEX_ID_SEQ", initialValue = 200, allocationSize = 10)
+@Table(name = "UNICLASS_COMPLEX")
+data class UniclassComplexEntity (
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uniclass-entity-id-seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "uniclass-complex-id-seq")
     @Column(nullable = false)
     val id: Long? = -1,
 
@@ -35,6 +35,25 @@ data class UniclassEntityEntity (
 
     @Column(nullable = false)
     val active: Boolean = false,
-) {
 
+    ){
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null) return false
+        val oEffectiveClass =
+            if (other is HibernateProxy) other.hibernateLazyInitializer.persistentClass else other.javaClass
+        val thisEffectiveClass = this.javaClass
+        if (thisEffectiveClass != oEffectiveClass) return false
+        other as UniclassComplexEntity
+
+        return id != null && id == other.id
+    }
+
+    final override fun hashCode(): Int =
+        javaClass.hashCode()
+
+    @Override
+    override fun toString(): String {
+        return this::class.simpleName + "(  code = $code )"
+    }
 }

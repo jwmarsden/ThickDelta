@@ -19,13 +19,17 @@ abstract class ClassificationEntity (
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "classification-id-seq")
     @Column(nullable = false)
-    val id: Long? = -1,
+    open val id: Long? = -1,
+
+    @Column(length = 150)
+    open val description: String? = "Unknown",
 
 ) {
 
     abstract fun getPathString(): String
 
     override fun toString(): String {
-        return "ClassificationEntity(id=$id)"
+        return "$description"
     }
+
 }

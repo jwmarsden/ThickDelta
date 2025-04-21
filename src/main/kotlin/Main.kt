@@ -5,10 +5,14 @@ import com.ventia.entities.*
 import com.ventia.entity.AssetEntity
 import com.ventia.entity.AssetStatusEntity
 import com.ventia.entity.TypeEntity
+import com.ventia.entity.classification.ClassificationComplexEntity
 import com.ventia.entity.classification.ClassificationEntity
-import com.ventia.entity.classification.ClassificationLocationEntity
+import com.ventia.entity.classification.ClassificationEntityEntity
+import com.ventia.entity.classification.ClassificationSpaceLocationEntity
 import com.ventia.entity.classification.ClassificationProductEntity
+import com.ventia.entity.classification.UniclassComplexEntity
 import com.ventia.entity.classification.UniclassElementFunctionEntity
+import com.ventia.entity.classification.UniclassEntityEntity
 import com.ventia.entity.classification.UniclassProductEntity
 import com.ventia.entity.classification.UniclassSpaceLocationEntity
 import com.ventia.entity.classification.UniclassSystemEntity
@@ -47,13 +51,17 @@ fun main() {
     println(LiquibaseUtil.getBuildVersionInfo())
 
     val sessionFactory: SessionFactory = Configuration()
+        .addAnnotatedClass(UniclassEntityEntity::class.java)
         .addAnnotatedClass(UniclassElementFunctionEntity::class.java)
         .addAnnotatedClass(UniclassSystemEntity::class.java)
         .addAnnotatedClass(UniclassProductEntity::class.java)
         .addAnnotatedClass(UniclassSpaceLocationEntity::class.java)
+        .addAnnotatedClass(UniclassComplexEntity::class.java)
         .addAnnotatedClass(ClassificationEntity::class.java)
-        .addAnnotatedClass(ClassificationLocationEntity::class.java)
+        .addAnnotatedClass(ClassificationEntityEntity::class.java)
+        .addAnnotatedClass(ClassificationSpaceLocationEntity::class.java)
         .addAnnotatedClass(ClassificationProductEntity::class.java)
+        .addAnnotatedClass(ClassificationComplexEntity::class.java)
         .addAnnotatedClass(TypeEntity::class.java)
         .addAnnotatedClass(DisciplineEntity::class.java)
         .addAnnotatedClass(SystemEntity::class.java)
