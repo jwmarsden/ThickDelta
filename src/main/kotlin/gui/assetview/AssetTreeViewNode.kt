@@ -15,7 +15,11 @@ class AssetTreeViewNode(val type: AssetTreeNodeType, userObject: Any?, allowsChi
             return if(includeType && locationObject.type != null && !locationObject.type.type.equals("") && !locationObject.type.type.equals("UNK")) {
                 "${locationObject.key} - (${locationObject.type}) ${locationObject.description}"
             } else {
-                "${locationObject.key} - ${locationObject.description} [${locationObject.classification?.getPathString()}]"
+                if(locationObject.classification != null) {
+                    "${locationObject.key} - ${locationObject.description}" //[${locationObject.classification.getPathString()}]
+                } else {
+                    "${locationObject.key} - ${locationObject.description}"
+                }
             }
         } else if (type == AssetTreeNodeType.ASSET) {
             val assetObject = userObject as AssetEntity

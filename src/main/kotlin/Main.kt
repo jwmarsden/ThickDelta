@@ -5,17 +5,7 @@ import com.ventia.entities.*
 import com.ventia.entity.AssetEntity
 import com.ventia.entity.AssetStatusEntity
 import com.ventia.entity.TypeEntity
-import com.ventia.entity.classification.ClassificationComplexEntity
-import com.ventia.entity.classification.ClassificationEntity
-import com.ventia.entity.classification.ClassificationEntityEntity
-import com.ventia.entity.classification.ClassificationSpaceLocationEntity
-import com.ventia.entity.classification.ClassificationProductEntity
-import com.ventia.entity.classification.UniclassComplexEntity
-import com.ventia.entity.classification.UniclassElementFunctionEntity
-import com.ventia.entity.classification.UniclassEntityEntity
-import com.ventia.entity.classification.UniclassProductEntity
-import com.ventia.entity.classification.UniclassSpaceLocationEntity
-import com.ventia.entity.classification.UniclassSystemEntity
+import com.ventia.entity.classification.*
 import com.ventia.gui.MainFrame
 import com.ventia.gui.assetview.AssetHierarchyView
 import com.ventia.model.AssetModel
@@ -62,6 +52,8 @@ fun main() {
         .addAnnotatedClass(ClassificationSpaceLocationEntity::class.java)
         .addAnnotatedClass(ClassificationProductEntity::class.java)
         .addAnnotatedClass(ClassificationComplexEntity::class.java)
+        .addAnnotatedClass(ClassificationComplexEntityLocationEntity::class.java)
+
         .addAnnotatedClass(TypeEntity::class.java)
         .addAnnotatedClass(DisciplineEntity::class.java)
         .addAnnotatedClass(SystemEntity::class.java)

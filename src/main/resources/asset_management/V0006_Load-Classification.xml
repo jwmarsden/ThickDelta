@@ -7,8 +7,7 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
 
-    <changeSet id="Load-Classifications"
-               author="jwm">
+    <changeSet id="Load-Classifications" author="jwm">
 
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Entity.csv" tableName="UNICLASS_ENTITY"/>
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Element_Function.csv" tableName="UNICLASS_ELEMENT_FUNCTION"/>
@@ -17,11 +16,23 @@
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Space_Location.csv" tableName="UNICLASS_SPACE_LOCATION"/>
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Complex.csv" tableName="UNICLASS_COMPLEX"/>
 
+        </changeSet>
+        <changeSet id="1745305300297-1" author="jwm">
             <loadData file="asset_management/data/classification/V0006_Classification.csv" tableName="CLASSIFICATION"/>
+        </changeSet>
+        <changeSet id="1745305300298-1" author="jwm">
             <loadData file="asset_management/data/classification/V0006_Classification_Complex.csv" tableName="CLASSIFICATION_COMPLEX"/>
-            <loadData file="asset_management/data/classification/V0006_Classification_Space_Location.csv" tableName="CLASSIFICATION_SPACE_LOCATION"/>
-            <loadData file="asset_management/data/classification/V0006_Classification_Entity.csv" tableName="CLASSIFICATION_ENTITY"/>
-
+        </changeSet>
+        <changeSet id="1745305300299-1" author="jwm">
+            <loadData file="asset_management/data/classification/V0006_Classification_CompEntLoc.csv" tableName="CLASSIFICATION_COMPLEX_ENTITY_LOCATION"/>
+        </changeSet>
+        <changeSet id="1745305114500-1" author="jwm">
             <loadData file="asset_management/data/classification/V0006_Classification_Product.csv" tableName="CLASSIFICATION_PRODUCT"/>
-    </changeSet>
+        </changeSet>
+
+<!--
+<loadData file="asset_management/data/classification/V0006_Classification_Space_Location.csv" tableName="CLASSIFICATION_SPACE_LOCATION"/>
+<loadData file="asset_management/data/classification/V0006_Classification_Entity.csv" tableName="CLASSIFICATION_ENTITY"/>
+-->
+
 </databaseChangeLog>

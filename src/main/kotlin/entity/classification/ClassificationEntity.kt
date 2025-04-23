@@ -1,14 +1,6 @@
 package com.ventia.entity.classification
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Inheritance
-import jakarta.persistence.InheritanceType
-import jakarta.persistence.SequenceGenerator
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -21,8 +13,12 @@ abstract class ClassificationEntity (
     @Column(nullable = false)
     open val id: Long? = -1,
 
-    @Column(length = 150)
-    open val description: String? = "Unknown",
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    open val type: ClassificationType = ClassificationType.UNKNOWN,
+
+    @Column(length = 150, nullable = false)
+    open val description: String = "Unknown",
 
 ) {
 
@@ -30,6 +26,14 @@ abstract class ClassificationEntity (
 
     override fun toString(): String {
         return "$description"
+    }
+
+    enum class ClassificationType {
+        UNKNOWN,
+        COMPLEX,
+        LOCATION,
+        MANAGED,
+        ASSET
     }
 
 }

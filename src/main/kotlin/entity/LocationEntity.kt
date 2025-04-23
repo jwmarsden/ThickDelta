@@ -33,7 +33,7 @@ data class LocationEntity (
     @JoinColumn(name = "type", referencedColumnName = "type", nullable = true, columnDefinition = "VARCHAR(10) default 'UNK'")
     val type: TypeEntity? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     val classification: ClassificationEntity? = null,
 
     @Column(nullable = false, name = "MAINTAINABLE_FLAG", columnDefinition="BOOLEAN DEFAULT FALSE")
