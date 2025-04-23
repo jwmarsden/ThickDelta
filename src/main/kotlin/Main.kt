@@ -113,7 +113,7 @@ fun main() {
 
     val frame: MainFrame = MainFrame()
     frame.title = "Ventia: T2D AMIS Validation Tool"
-    frame.size = Dimension(1000, 800)
+    frame.size = Dimension(1200, 1000)
     frame.addWindowListener(object : WindowAdapter() {
         override fun windowClosing(e: WindowEvent) {
             sessionFactory.close()

@@ -48,12 +48,22 @@
 10000,Road entities,LOCATION
 10010,Motorway access roads,LOCATION
 10011,Motorway access road links,LOCATION
+10012,Motorway culverts,LOCATION
+10013,Motorway intersections,LOCATION
+10014,Aqueducts,LOCATION
 10020,Motorways,LOCATION
 10021,Motorway links,LOCATION
 10030,Roads,LOCATION
 10040,Fixed bridges,LOCATION
-10050,Maintenance and operational centre compounds,LOCATION
+10050,Tunnel portals,LOCATION
+10060,Tunnel links,LOCATION
+10061,Tunnel sub-links,LOCATION
+10062,Invert sub-links,LOCATION
+10063,Tunnel cross passages,LOCATION
+10064,Tunnel sump links,LOCATION
+10070,Aqueduct,LOCATION
 20000,Council area,LOCATION
 20010,Council buildings,LOCATION
 20020,Council outdoor spaces,LOCATION
+30000,Maintenance and operational centre compounds,LOCATION
 100000,Jet fans,MANAGED
