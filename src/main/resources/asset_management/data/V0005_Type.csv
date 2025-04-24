@@ -9,6 +9,7 @@
 7,SUBLINK,Sub-Link,TRUE
 8,SUBNODE,Sub-Node,TRUE
 9,OUTDOOR,Outdoor Area,TRUE
+10,FACILITY,Facility,TRUE
 3060,SBT,Start / End Terminal,TRUE
 3061,SET,Start / End Terminal,TRUE
 11,AQD,CO/NO/Vis Instrument,TRUE
