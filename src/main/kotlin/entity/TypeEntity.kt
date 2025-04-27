@@ -13,7 +13,7 @@ data class TypeEntity(
     @Column(nullable = false)
     val id: Long? = -1,
 
-    @Column(nullable = false, length = 10, unique = true)
+    @Column(nullable = false, length = 15, unique = true)
     val type: String? = null,
 
     @Column(nullable = true, length = 150)

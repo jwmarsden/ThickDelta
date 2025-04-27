@@ -27,6 +27,6 @@ class ClassificationProductEntity: ClassificationEntity() {
     val product: UniclassProductEntity? = null
 
     override fun getPathString(): String {
-        return "${function?.code}/${system?.code}/${product?.code}"
+        return "${function?.code} / ${system?.code} / ${product?.code}"
     }
 }

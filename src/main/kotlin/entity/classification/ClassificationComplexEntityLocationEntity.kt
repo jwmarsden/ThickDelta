@@ -23,13 +23,13 @@ class ClassificationComplexEntityLocationEntity: ClassificationEntity() {
             if (complex != null) {
                 append("${complex.code}")
                 if(entity != null || spaceLocation != null) {
-                    append("/")
+                    append(" / ")
                 }
             }
             if (entity != null) {
                 append("${entity.code}")
                 if(spaceLocation != null) {
-                    append("/")
+                    append(" / ")
                 }
             }
             if (spaceLocation != null) {

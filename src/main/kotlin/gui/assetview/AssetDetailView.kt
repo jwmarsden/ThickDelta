@@ -4,6 +4,7 @@ import com.ventia.controller.AssetController
 import com.ventia.entity.classification.ClassificationComplexEntity
 import com.ventia.entity.classification.ClassificationComplexEntityLocationEntity
 import com.ventia.entity.classification.ClassificationEntity
+import com.ventia.entity.classification.ClassificationProductEntity
 import com.ventia.gui.assetview.intent.AssetSelectedIntent
 import com.ventia.gui.assetview.intent.LocationSelectedIntent
 import com.ventia.gui.assetview.intent.RootSelectedIntent
@@ -13,13 +14,18 @@ import com.ventia.intent.IntentHub
 import com.ventia.intent.IntentReceiver
 import java.awt.BorderLayout
 import java.awt.Color
-import java.awt.Dimension
-import java.awt.FlowLayout
 import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
-import java.awt.GridLayout
 import java.awt.Insets
 import javax.swing.*
+
+const val COMPLEX_LABEL = "Complex (Co):"
+const val ENTITY_LABEL = "Entity (En):"
+const val SPACE_LOCATION_LABEL = "Space/Location (SL):"
+const val ELEMENT_FUNCTION_LABEL = "Element/Function (EF):"
+const val SYSTEM_LABEL = "System (Ss):"
+const val PRODUCT_LABEL = "Product (Pr):"
+
 
 class AssetDetailView(private val controller: AssetController): JPanel(), IntentReceiver {
 
@@ -59,21 +65,38 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
 
             if(intent.location.classification != null) {
                 val classification: ClassificationEntity = intent.location.classification
-                //println(classification.getPathString())
                 detailsTab.classificationDescription.text = classification.toString()
+                detailsTab.classificationPath.text = classification.getPathString()
                 if(classification is ClassificationComplexEntity) {
                     detailsTab.complexField.text = classification.complex?.code
                     detailsTab.complexFieldDescription.text = classification.complex?.title
                 } else if(classification is ClassificationComplexEntityLocationEntity) {
                     //val classificationComplextEntityLocation = classification as ClassificationComplexEntityLocationEntity
+                    detailsTab.l1Label.text = COMPLEX_LABEL
                     detailsTab.complexField.text = classification.complex?.code
                     detailsTab.complexFieldDescription.text = classification.complex?.title
 
+                    detailsTab.l2label.text = ENTITY_LABEL
                     detailsTab.entityField.text = classification.entity?.code
                     detailsTab.entityFieldDescription.text = classification.entity?.title
 
+                    detailsTab.l3label.text = SPACE_LOCATION_LABEL
                     detailsTab.spaceField.text = classification.spaceLocation?.code
                     detailsTab.spaceFieldDescription.text = classification.spaceLocation?.title
+                } else if(classification is ClassificationProductEntity) {
+                    detailsTab.titledBorder.title = "Uniclass Asset Classification"
+
+                    detailsTab.l1Label.text = ELEMENT_FUNCTION_LABEL
+                    detailsTab.complexField.text = classification.function?.code
+                    detailsTab.complexFieldDescription.text = classification.function?.title
+
+                    detailsTab.l2label.text = SYSTEM_LABEL
+                    detailsTab.entityField.text = classification.system?.code
+                    detailsTab.entityFieldDescription.text = classification.system?.title
+
+                    detailsTab.l3label.text = PRODUCT_LABEL
+                    detailsTab.spaceField.text = classification.product?.code
+                    detailsTab.spaceFieldDescription.text = classification.product?.title
                 }
 
 
@@ -95,19 +118,31 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
 
     public class DetailsTab: JPanel() {
 
+
+
         var classificationDescription: JTextField = JTextField(29)
-        var complexField: JTextField = JTextField(8)
+        var classificationPath: JTextField = JTextField(29)
+        var complexField: JTextField = JTextField(10)
         var complexFieldDescription: JTextField = JTextField(20)
-        var entityField: JTextField = JTextField("",8)
+        var entityField: JTextField = JTextField("",10)
         var entityFieldDescription: JTextField = JTextField("",20)
-        var spaceField: JTextField = JTextField("",8)
+        var spaceField: JTextField = JTextField("",10)
         var spaceFieldDescription: JTextField = JTextField("",20)
+
+        val descriptionLabel: JLabel = JLabel("T2D Description:", SwingConstants.RIGHT)
+        val pathLabel: JLabel = JLabel("AMIS Classpath:", SwingConstants.RIGHT)
+        val l1Label: JLabel = JLabel(COMPLEX_LABEL, SwingConstants.RIGHT)
+        val l2label: JLabel = JLabel(ENTITY_LABEL, SwingConstants.RIGHT)
+        val l3label: JLabel = JLabel(SPACE_LOCATION_LABEL, SwingConstants.RIGHT)
+
+        val titledBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), "Uniclass Location Classification")
 
         override fun addNotify() {
             super.addNotify()
             layout = BorderLayout()
 
             classificationDescription.isEditable = false
+            classificationPath.isEditable = false
             complexField.isEditable = false
             complexFieldDescription.isEditable = false
             entityField.isEditable = false
@@ -117,23 +152,18 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
 
             val classificationPanel = JPanel()
             classificationPanel.layout = BorderLayout()
-            classificationPanel.border = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), "Uniclass Location Classification")
+            classificationPanel.border = titledBorder
 
             val classificationFieldsPanel = JPanel()
-            val descriptionLabel: JLabel = JLabel("T2D Description:", SwingConstants.RIGHT)
-
-            val complexLabel: JLabel = JLabel("Complex (Co):", SwingConstants.RIGHT)
-            //complexLabel.size = Dimension(100, 20)
-            val entityLabel: JLabel = JLabel("Entity (En):")
-            val spaceLocationLabel: JLabel = JLabel("Space/Location (SL):")
 
             val classificationLayout = GridBagLayout()
             val gbc = GridBagConstraints()
             classificationFieldsPanel.layout = classificationLayout
 
+            var row = 0
             gbc.insets = Insets(2, 2, 2, 2)
             gbc.gridx = 0
-            gbc.gridy = 0
+            gbc.gridy = row
             gbc.gridwidth = 1
             gbc.gridheight = 1
             gbc.anchor = GridBagConstraints.WEST
@@ -142,25 +172,41 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
             gbc.gridwidth = 4
             classificationFieldsPanel.add(classificationDescription, gbc)
 
+            row++
             gbc.gridx = 0
-            gbc.gridy = 1
+            gbc.gridy = row
             gbc.gridwidth = 1
             gbc.gridheight = 1
-            classificationFieldsPanel.add(complexLabel, gbc)
+            classificationFieldsPanel.add(pathLabel, gbc)
+            gbc.gridx = 1
+            gbc.gridwidth = 4
+            classificationFieldsPanel.add(classificationPath, gbc)
+
+
+            row++
+            gbc.gridx = 0
+            gbc.gridy = row
+            gbc.gridwidth = 1
+            gbc.gridheight = 1
+            classificationFieldsPanel.add(l1Label, gbc)
             gbc.gridx = 1
             classificationFieldsPanel.add(complexField, gbc)
             gbc.gridx = 2
             classificationFieldsPanel.add(complexFieldDescription, gbc)
+
+            row++
             gbc.gridx = 0
-            gbc.gridy = 2
-            classificationFieldsPanel.add(entityLabel, gbc)
+            gbc.gridy = row
+            classificationFieldsPanel.add(l2label, gbc)
             gbc.gridx = 1
             classificationFieldsPanel.add(entityField, gbc)
             gbc.gridx = 2
             classificationFieldsPanel.add(entityFieldDescription, gbc)
+
+            row++
             gbc.gridx = 0
-            gbc.gridy = 3
-            classificationFieldsPanel.add(spaceLocationLabel, gbc)
+            gbc.gridy = row
+            classificationFieldsPanel.add(l3label, gbc)
             gbc.gridx = 1
             classificationFieldsPanel.add(spaceField, gbc)
             gbc.gridx = 2
@@ -171,6 +217,9 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
             add(classificationPanel, BorderLayout.NORTH)
 
         }
+
     }
+
 }
+
 

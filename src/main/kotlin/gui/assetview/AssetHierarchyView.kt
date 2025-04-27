@@ -18,7 +18,7 @@ class AssetHierarchyView(private val controller: AssetController): JPanel() {
 
         layout = BorderLayout()
 
-        splitPane.setDividerLocation(540)
+        splitPane.setDividerLocation(680)
         splitPane.setOneTouchExpandable(true)
         splitPane.setContinuousLayout(true)
 

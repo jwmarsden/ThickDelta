@@ -4,6 +4,11 @@ import com.ventia.entity.AssetEntity
 import com.ventia.entity.TypeEntity
 import com.ventia.entity.classification.ClassificationEntity
 import jakarta.persistence.*
+import org.hibernate.annotations.SQLJoinTableRestriction
+import org.hibernate.annotations.SQLRestriction
+import org.hibernate.annotations.Where
+import org.hibernate.annotations.WhereJoinTable
+import org.hibernate.property.access.spi.Getter
 import org.hibernate.query.Query
 
 @Entity
@@ -39,8 +44,9 @@ data class LocationEntity (
     @Column(nullable = false, name = "MAINTAINABLE_FLAG", columnDefinition="BOOLEAN DEFAULT FALSE")
     val maintainableFlag: Boolean = false,
 
-    //@ManyToMany(mappedBy = "children", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    //val parents: List<LocationEntity> = mutableListOf(),
+    @ManyToMany(mappedBy = "children", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @SQLJoinTableRestriction("system_id in (select sys.id from system sys where sys.system = 'DEFAULT')")
+    val primaryParent: List<LocationEntity> = mutableListOf(),
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinTable(
@@ -55,6 +61,11 @@ data class LocationEntity (
     val assets: List<AssetEntity> = mutableListOf(),
 
     ) {
+
+    val level: Int
+        get() {
+            return countLevels()
+        }
 
     fun getAssetsWithoutParent(): List<AssetEntity> {
         val assetWithoutParent: MutableList<AssetEntity> = mutableListOf()
@@ -83,5 +94,15 @@ data class LocationEntity (
 
     override fun hashCode(): Int {
         return key.hashCode()
+    }
+
+    private fun countLevels(): Int {
+        var level = this
+        var count = 0
+        while(level.primaryParent.isNotEmpty()) {
+            level = level.primaryParent[0]
+            count++
+        }
+        return count
     }
 }

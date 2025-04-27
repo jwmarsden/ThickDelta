@@ -10,10 +10,12 @@
 8,SUBNODE,Sub-Node,TRUE
 9,OUTDOOR,Outdoor Area,TRUE
 10,FACILITY,Facility,TRUE
+11,CARRIAGEWAY,Carriageway,TRUE
+12,LANE,Carriageway Lane,TRUE
 3060,SBT,Start / End Terminal,TRUE
 3061,SET,Start / End Terminal,TRUE
-11,AQD,CO/NO/Vis Instrument,TRUE
-20,WTPD,Dosing plant,TRUE
+21,AQD,CO/NO/Vis Instrument,TRUE
+22,WTPD,Dosing plant,TRUE
 30,WTPI,Instrumentation,TRUE
 40,VACT,Ventilation Actuator,TRUE
 50,WTP,Water Treatment Plant,TRUE
