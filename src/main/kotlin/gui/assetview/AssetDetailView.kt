@@ -53,15 +53,17 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
 
     override fun receiveIntent(intent: Intent) {
         //println("AssetDetailView received intent of $intent")
+        detailsTab.classificationDescription.text = ""
+        detailsTab.classificationPath.text = ""
+        detailsTab.complexField.text = ""
+        detailsTab.complexFieldDescription.text = ""
+        detailsTab.entityField.text = ""
+        detailsTab.entityFieldDescription.text = ""
+        detailsTab.spaceField.text = ""
+        detailsTab.spaceFieldDescription.text = ""
 
         if(intent is LocationSelectedIntent) {
-            detailsTab.classificationDescription.text = ""
-            detailsTab.complexField.text = ""
-            detailsTab.complexFieldDescription.text = ""
-            detailsTab.entityField.text = ""
-            detailsTab.entityFieldDescription.text = ""
-            detailsTab.spaceField.text = ""
-            detailsTab.spaceFieldDescription.text = ""
+
 
             if(intent.location.classification != null) {
                 val classification: ClassificationEntity = intent.location.classification
@@ -71,7 +73,8 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
                     detailsTab.complexField.text = classification.complex?.code
                     detailsTab.complexFieldDescription.text = classification.complex?.title
                 } else if(classification is ClassificationComplexEntityLocationEntity) {
-                    //val classificationComplextEntityLocation = classification as ClassificationComplexEntityLocationEntity
+                    detailsTab.titledBorder.title = "Uniclass Location Classification"
+
                     detailsTab.l1Label.text = COMPLEX_LABEL
                     detailsTab.complexField.text = classification.complex?.code
                     detailsTab.complexFieldDescription.text = classification.complex?.title
@@ -118,16 +121,18 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
 
     public class DetailsTab: JPanel() {
 
+        val descriptionLength = 32
+        val codeLength = 15
+        val codeDescriptionLength = 28
 
-
-        var classificationDescription: JTextField = JTextField(29)
-        var classificationPath: JTextField = JTextField(29)
-        var complexField: JTextField = JTextField(10)
-        var complexFieldDescription: JTextField = JTextField(20)
-        var entityField: JTextField = JTextField("",10)
-        var entityFieldDescription: JTextField = JTextField("",20)
-        var spaceField: JTextField = JTextField("",10)
-        var spaceFieldDescription: JTextField = JTextField("",20)
+        var classificationDescription: JTextField = JTextField(descriptionLength)
+        var classificationPath: JTextField = JTextField(descriptionLength)
+        var complexField: JTextField = JTextField(codeLength)
+        var complexFieldDescription: JTextField = JTextField(codeDescriptionLength)
+        var entityField: JTextField = JTextField("",codeLength)
+        var entityFieldDescription: JTextField = JTextField("",codeDescriptionLength)
+        var spaceField: JTextField = JTextField("",codeLength)
+        var spaceFieldDescription: JTextField = JTextField("",codeDescriptionLength)
 
         val descriptionLabel: JLabel = JLabel("T2D Description:", SwingConstants.RIGHT)
         val pathLabel: JLabel = JLabel("AMIS Classpath:", SwingConstants.RIGHT)

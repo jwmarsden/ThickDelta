@@ -735,10 +735,12 @@ ID,CODE,GROUP_CODE,SUB_GROUP_CODE,SECTION_CODE,OBJECT_CODE,TITLE,ACTIVE
 7340,SL_70_10,70,10,,,Electrical power generation spaces,TRUE
 7350,SL_70_10_82,70,10,82,,Solar arrays,TRUE
 7360,SL_70_10_91,70,10,91,,Turbine rooms,TRUE
+7565,SL_70_20_89,70,20,89,,Transmission cable section,TRUE
 7370,SL_70_30,70,30,,,Electricity distribution and transmission spaces,TRUE
 7380,SL_70_30_26,70,30,26,,Electrical distribution pedestals,TRUE
 7390,SL_70_30_35,70,30,35,,High-voltage electricity substation chambers,TRUE
 7400,SL_70_30_45,70,30,45,,Low-voltage electricity substation chambers,TRUE
+7405,SL_70_30_83,70,30,83,,Substation bays,TRUE
 7410,SL_70_30_92,70,30,92,,Uninterruptible power supply rooms,TRUE
 7420,SL_75,75,,,,"Communications, security, safety and protection spaces",TRUE
 7430,SL_75_10,75,10,,,Communications spaces,TRUE

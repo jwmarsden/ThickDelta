@@ -14,7 +14,7 @@ abstract class ClassificationEntity (
     open val id: Long? = -1,
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 10, nullable = false)
+    @Column(length = 20, nullable = false)
     open val type: ClassificationType = ClassificationType.UNKNOWN,
 
     @Column(length = 150, nullable = false)
@@ -25,15 +25,18 @@ abstract class ClassificationEntity (
     abstract fun getPathString(): String
 
     override fun toString(): String {
-        return "$description"
+        return description
     }
 
     enum class ClassificationType {
         UNKNOWN,
         COMPLEX,
         LOCATION,
-        MANAGED,
-        ASSET
+        MANAGED_ASSET,
+        ASSET,
+        LINEAR,
+        LINEAR_FEATURE,
+        LINEAR_RELATIONSHIP
     }
 
 }

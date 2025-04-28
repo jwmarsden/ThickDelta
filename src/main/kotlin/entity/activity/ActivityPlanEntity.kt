@@ -1,6 +1,7 @@
-package com.ventia.entity
+package com.ventia.entity.activity
 
 import com.ventia.entities.LocationEntity
+import com.ventia.entity.AssetEntity
 import jakarta.persistence.*
 
 @Entity
