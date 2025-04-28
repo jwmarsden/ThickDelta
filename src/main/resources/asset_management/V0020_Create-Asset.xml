@@ -91,6 +91,9 @@
                                  constraintName="FK_ASSET_ON_LOCATION"
                                  referencedColumnNames="key"
                                  referencedTableName="LOCATION"/>
+        <addUniqueConstraint columnNames="key"
+                             constraintName="uc_asset_key"
+                             tableName="ASSET"/>
     </changeSet>
 
 </databaseChangeLog>

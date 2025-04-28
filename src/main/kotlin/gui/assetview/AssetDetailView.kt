@@ -4,7 +4,7 @@ import com.ventia.controller.AssetController
 import com.ventia.entity.classification.ClassificationComplexEntity
 import com.ventia.entity.classification.ClassificationComplexEntityLocationEntity
 import com.ventia.entity.classification.ClassificationEntity
-import com.ventia.entity.classification.ClassificationProductEntity
+import com.ventia.entity.classification.ClassificationManagedAssetEntity
 import com.ventia.gui.assetview.intent.AssetSelectedIntent
 import com.ventia.gui.assetview.intent.LocationSelectedIntent
 import com.ventia.gui.assetview.intent.RootSelectedIntent
@@ -86,7 +86,7 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
                     detailsTab.l3label.text = SPACE_LOCATION_LABEL
                     detailsTab.spaceField.text = classification.spaceLocation?.code
                     detailsTab.spaceFieldDescription.text = classification.spaceLocation?.title
-                } else if(classification is ClassificationProductEntity) {
+                } else if(classification is ClassificationManagedAssetEntity) {
                     detailsTab.titledBorder.title = "Uniclass Asset (Managed) Classification"
 
                     detailsTab.l1Label.text = ELEMENT_FUNCTION_LABEL

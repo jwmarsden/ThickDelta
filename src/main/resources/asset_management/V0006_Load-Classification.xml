@@ -24,10 +24,10 @@
             <loadData file="asset_management/data/classification/V0006_Classification_Complex.csv" tableName="CLASSIFICATION_COMPLEX"/>
         </changeSet>
         <changeSet id="1745305300299-1" author="jwm">
-            <loadData file="asset_management/data/classification/V0006_Classification_CompEntLoc.csv" tableName="CLASSIFICATION_COMPLEX_ENTITY_LOCATION"/>
+            <loadData file="asset_management/data/classification/V0006_Classification_Complex_Entity_Location.csv" tableName="CLASSIFICATION_COMPLEX_ENTITY_LOCATION"/>
         </changeSet>
         <changeSet id="1745305114500-1" author="jwm">
-            <loadData file="asset_management/data/classification/V0006_Classification_Product.csv" tableName="CLASSIFICATION_PRODUCT"/>
+            <loadData file="asset_management/data/classification/V0006_Classification_Asset_Managed.csv" tableName="CLASSIFICATION_ASSET_MANAGED"/>
         </changeSet>
         <changeSet id="1745305114523-1" author="jwm">
             <loadData file="asset_management/data/classification/V0006_Classification_Asset.csv" tableName="CLASSIFICATION_ASSET"/>

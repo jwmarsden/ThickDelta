@@ -87,7 +87,7 @@ class AssetTreeCellRenderer : DefaultTreeCellRenderer() {
                 val asset = assetTreeNode.userObject as AssetEntity
                 if (asset.linear) {
                     if(asset.type?.type == "CARRIAGEWAY") {
-                        fieldLabel.foreground = Color.blue
+                        fieldLabel.foreground = Color.red
                         if(asset.key.endsWith("L")) {
                             fieldLabel.icon = roadLIcon
                         } else {
@@ -95,7 +95,7 @@ class AssetTreeCellRenderer : DefaultTreeCellRenderer() {
                         }
 
                     } else if(asset.type?.type == "LANE") {
-                        fieldLabel.foreground = Color.blue
+                        fieldLabel.foreground = Color.red
                         fieldLabel.icon = roadIcon
                     } else {
                         fieldLabel.foreground = Color.blue

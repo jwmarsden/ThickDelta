@@ -5,11 +5,12 @@ import com.ventia.entity.AssetEntity
 import jakarta.persistence.*
 
 @Entity
-@SequenceGenerator(name = "work-schedule-id-seq", sequenceName = "WORK_SCHEDULER_ID_SEQ", initialValue = 100, allocationSize = 10)
-@Table(name = "WORK_SCHEDULE")
-data class ActivityPlanEntity (
+@SequenceGenerator(name = "activity-schedule-id-seq", sequenceName = "ACTIVITY_SCHEDULER_ID_SEQ", initialValue = 100, allocationSize = 10)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+abstract class ActivityScheduleEntity (
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "work-schedule-id-seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "activity-schedule-id-seq")
+    //@GeneratedValue(strategy = GenerationType.TABLE)
     @Column(nullable = false)
     val id: Long = -1,
 
@@ -34,7 +35,7 @@ data class ActivityPlanEntity (
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
-        other as ActivityPlanEntity
+        other as ActivityScheduleEntity
         return key == other.key
     }
 

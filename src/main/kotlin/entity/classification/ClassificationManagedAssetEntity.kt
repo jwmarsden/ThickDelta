@@ -1,17 +1,14 @@
 package com.ventia.entity.classification
 
-import com.ventia.entity.classification.UniclassElementFunctionEntity
 import jakarta.persistence.Entity
-import com.ventia.entity.classification.UniclassProductEntity
-import com.ventia.entity.classification.UniclassSystemEntity
 import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = "CLASSIFICATION_PRODUCT")
-class ClassificationProductEntity: ClassificationEntity() {
+@Table(name = "CLASSIFICATION_ASSET_MANAGED")
+class ClassificationManagedAssetEntity: ClassificationEntity() {
 
 
     @ManyToOne(fetch = FetchType.LAZY)

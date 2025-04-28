@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.31.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1745823496237-1" author="jwm">
+        <createSequence incrementBy="10" sequenceName="ACTIVITY_SCHEDULER_ID_SEQ" startValue="100"/>
+    </changeSet>
+    <changeSet id="1745823496237-2" author="jwm">
+        <createTable tableName="ACTIVITY_SCHEDULE_CYCLICAL">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_activity_schedule_cyclical"/>
+            </column>
+            <column name="key" type="VARCHAR(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(50)"/>
+            <column name="location" type="VARCHAR"/>
+            <column name="asset" type="VARCHAR"/>
+            <column name="baseDate" type="DATETIME"/>
+            <column name="startDate" type="DATETIME"/>
+            <column name="endDate" type="DATETIME"/>
+            <column name="frequency" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1745823496237-3" author="jwm">
+        <createTable tableName="ACTIVITY_SCHEDULE_DATE_LIST">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_activity_schedule_date_list"/>
+            </column>
+            <column name="key" type="VARCHAR(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(50)"/>
+            <column name="location" type="VARCHAR"/>
+            <column name="asset" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1745823496237-4" author="jwm">
+        <createTable tableName="ACTIVITY_SCHEDULE_METER_BASED">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_activity_schedule_meter_based"/>
+            </column>
+            <column name="key" type="VARCHAR(12)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(50)"/>
+            <column name="location" type="VARCHAR"/>
+            <column name="asset" type="VARCHAR"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1745823496237-5" author="jwm">
+        <createTable tableName="DATE_LIST">
+            <column name="DateListActivityScheduleEntity_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LIST_DATE" type="DATETIME"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1745823496237-6" author="jwm">
+        <addUniqueConstraint columnNames="key" constraintName="uc_activity_schedule_cyclical_key"
+                             tableName="ACTIVITY_SCHEDULE_CYCLICAL"/>
+    </changeSet>
+    <changeSet id="1745823496237-7" author="jwm">
+        <addUniqueConstraint columnNames="key" constraintName="uc_activity_schedule_date_list_key"
+                             tableName="ACTIVITY_SCHEDULE_DATE_LIST"/>
+    </changeSet>
+    <changeSet id="1745823496237-8" author="jwm">
+        <addUniqueConstraint columnNames="key" constraintName="uc_activity_schedule_meter_based_key"
+                             tableName="ACTIVITY_SCHEDULE_METER_BASED"/>
+    </changeSet>
+    <changeSet id="1745823496237-9" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="asset" baseTableName="ACTIVITY_SCHEDULE_CYCLICAL"
+                                 constraintName="FK_ACTIVITY_SCHEDULE_CYCLICAL_ON_ASSET" referencedColumnNames="key"
+                                 referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet id="1745823496237-10" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="location" baseTableName="ACTIVITY_SCHEDULE_CYCLICAL"
+                                 constraintName="FK_ACTIVITY_SCHEDULE_CYCLICAL_ON_LOCATION" referencedColumnNames="key"
+                                 referencedTableName="LOCATION"/>
+    </changeSet>
+    <changeSet id="1745823496237-11" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="asset" baseTableName="ACTIVITY_SCHEDULE_DATE_LIST"
+                                 constraintName="FK_ACTIVITY_SCHEDULE_DATE_LIST_ON_ASSET" referencedColumnNames="key"
+                                 referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet id="1745823496237-12" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="location" baseTableName="ACTIVITY_SCHEDULE_DATE_LIST"
+                                 constraintName="FK_ACTIVITY_SCHEDULE_DATE_LIST_ON_LOCATION" referencedColumnNames="key"
+                                 referencedTableName="LOCATION"/>
+    </changeSet>
+    <changeSet id="1745823496237-13" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="asset" baseTableName="ACTIVITY_SCHEDULE_METER_BASED"
+                                 constraintName="FK_ACTIVITY_SCHEDULE_METER_BASED_ON_ASSET" referencedColumnNames="key"
+                                 referencedTableName="ASSET"/>
+    </changeSet>
+    <changeSet id="1745823496237-14" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="location" baseTableName="ACTIVITY_SCHEDULE_METER_BASED"
+                                 constraintName="FK_ACTIVITY_SCHEDULE_METER_BASED_ON_LOCATION"
+                                 referencedColumnNames="key" referencedTableName="LOCATION"/>
+    </changeSet>
+    <changeSet id="1745823496237-15" author="jwm">
+        <addForeignKeyConstraint baseColumnNames="DateListActivityScheduleEntity_id" baseTableName="DATE_LIST"
+                                 constraintName="fk_date_list_on_date_list_activity_schedule_entity"
+                                 referencedColumnNames="id" referencedTableName="ACTIVITY_SCHEDULE_DATE_LIST"/>
+    </changeSet>
+
+</databaseChangeLog>
