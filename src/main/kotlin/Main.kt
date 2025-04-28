@@ -48,11 +48,12 @@ fun main() {
         .addAnnotatedClass(UniclassSpaceLocationEntity::class.java)
         .addAnnotatedClass(UniclassComplexEntity::class.java)
         .addAnnotatedClass(ClassificationEntity::class.java)
-        .addAnnotatedClass(ClassificationEntityEntity::class.java)
         .addAnnotatedClass(ClassificationSpaceLocationEntity::class.java)
         .addAnnotatedClass(ClassificationProductEntity::class.java)
         .addAnnotatedClass(ClassificationComplexEntity::class.java)
         .addAnnotatedClass(ClassificationComplexEntityLocationEntity::class.java)
+        .addAnnotatedClass(ClassificationAssetEntity::class.java)
+
 
         .addAnnotatedClass(TypeEntity::class.java)
         .addAnnotatedClass(DisciplineEntity::class.java)

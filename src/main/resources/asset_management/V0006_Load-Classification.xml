@@ -12,7 +12,7 @@
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Entity.csv" tableName="UNICLASS_ENTITY"/>
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Element_Function.csv" tableName="UNICLASS_ELEMENT_FUNCTION"/>
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_System.csv" tableName="UNICLASS_SYSTEM"/>
-            <loadData file="asset_management/data/uniclass/V0006_Uniclass_Product.csv" tableName="UNICLASS_PRODUCT"/>
+            <loadData file="asset_management/data/uniclass/V0006_Uniclass_Product_137.csv" tableName="UNICLASS_PRODUCT"/>
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Space_Location.csv" tableName="UNICLASS_SPACE_LOCATION"/>
             <loadData file="asset_management/data/uniclass/V0006_Uniclass_Complex.csv" tableName="UNICLASS_COMPLEX"/>
 
@@ -29,10 +29,8 @@
         <changeSet id="1745305114500-1" author="jwm">
             <loadData file="asset_management/data/classification/V0006_Classification_Product.csv" tableName="CLASSIFICATION_PRODUCT"/>
         </changeSet>
-
-<!--
-<loadData file="asset_management/data/classification/V0006_Classification_Space_Location.csv" tableName="CLASSIFICATION_SPACE_LOCATION"/>
-<loadData file="asset_management/data/classification/V0006_Classification_Entity.csv" tableName="CLASSIFICATION_ENTITY"/>
--->
+        <changeSet id="1745305114523-1" author="jwm">
+            <loadData file="asset_management/data/classification/V0006_Classification_Asset.csv" tableName="CLASSIFICATION_ASSET"/>
+        </changeSet>
 
 </databaseChangeLog>

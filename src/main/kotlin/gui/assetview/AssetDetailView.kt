@@ -87,7 +87,7 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
                     detailsTab.spaceField.text = classification.spaceLocation?.code
                     detailsTab.spaceFieldDescription.text = classification.spaceLocation?.title
                 } else if(classification is ClassificationProductEntity) {
-                    detailsTab.titledBorder.title = "Uniclass Asset Classification"
+                    detailsTab.titledBorder.title = "Uniclass Asset (Managed) Classification"
 
                     detailsTab.l1Label.text = ELEMENT_FUNCTION_LABEL
                     detailsTab.complexField.text = classification.function?.code
@@ -106,10 +106,19 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
 
 
 
-                detailsTab.repaint()
-            }
-        }
 
+            }
+        } else if (intent is AssetSelectedIntent) {
+            if(intent.asset.classification != null) {
+                detailsTab.titledBorder.title = "Uniclass Asset (Product) Classification"
+
+                val classification: ClassificationEntity = intent.asset.classification
+                detailsTab.classificationDescription.text = classification.toString()
+                detailsTab.classificationPath.text = classification.getPathString()
+            }
+
+        }
+        detailsTab.repaint()
     }
 
 //    class HeightRestrictedJPanel: JPanel() {

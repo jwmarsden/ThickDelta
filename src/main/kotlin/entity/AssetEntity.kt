@@ -2,6 +2,7 @@ package com.ventia.entity
 
 import com.ventia.entities.DisciplineEntity
 import com.ventia.entities.LocationEntity
+import com.ventia.entity.classification.ClassificationEntity
 import jakarta.persistence.*
 @Entity
 @SequenceGenerator(name = "asset-id-seq", sequenceName = "ASSET_ID_SEQ", initialValue = 100, allocationSize = 10)
@@ -25,6 +26,9 @@ data class AssetEntity (
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type", referencedColumnName = "type")
     val type: TypeEntity? = null,
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    val classification: ClassificationEntity? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent", referencedColumnName = "key")

@@ -7,14 +7,14 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = "CLASSIFICATION_ENTITY")
-class ClassificationEntityEntity: ClassificationEntity() {
+@Table(name = "CLASSIFICATION_ASSET")
+class ClassificationAssetEntity: ClassificationEntity() {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "entity", referencedColumnName = "code")
-    val entity: UniclassEntityEntity? = null
+    @JoinColumn(name = "product", referencedColumnName = "code")
+    val product: UniclassProductEntity? = null
 
     override fun getPathString(): String {
-        return "${entity?.code}"
+        return "${product?.code}"
     }
 }

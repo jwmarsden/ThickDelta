@@ -62,6 +62,8 @@
             <column name="status" type="VARCHAR(8)">
                 <constraints nullable="false" />
             </column>
+            <column name="classification_id"
+                    type="BIGINT"/>
             <column name="linear"
                     type="BOOLEAN">
                 <constraints nullable="false"/>
