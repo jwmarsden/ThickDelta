@@ -21,10 +21,28 @@ class AssetTreeCellRenderer : DefaultTreeCellRenderer() {
     private val roadLIconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-l-18.png")
     private val roadLIcon: ImageIcon = ImageIcon(roadLIconURL);
 
+    private val roadL1IconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-l1-18.png")
+    private val roadL1Icon: ImageIcon = ImageIcon(roadL1IconURL);
+    private val roadL2IconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-l2-18.png")
+    private val roadL2Icon: ImageIcon = ImageIcon(roadL2IconURL);
+    private val roadL3IconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-l3-18.png")
+    private val roadL3Icon: ImageIcon = ImageIcon(roadL3IconURL);
+
+    private val roadLxIconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-lx-18.png")
+    private val roadLxIcon: ImageIcon = ImageIcon(roadLxIconURL);
+
     private val roadRIconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-r-18.png")
     private val roadRIcon: ImageIcon = ImageIcon(roadRIconURL);
 
+    private val roadR1IconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-r1-18.png")
+    private val roadR1Icon: ImageIcon = ImageIcon(roadR1IconURL);
+    private val roadR2IconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-r2-18.png")
+    private val roadR2Icon: ImageIcon = ImageIcon(roadR2IconURL);
+    private val roadR3IconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-r3-18.png")
+    private val roadR3Icon: ImageIcon = ImageIcon(roadR3IconURL);
 
+    private val roadRxIconURL: URL? = this::class.java.getResource("/image/icon/icon-road/icon-road2-rx-18.png")
+    private val roadRxIcon: ImageIcon = ImageIcon(roadRxIconURL);
 
     private val tagIconURL: URL? = this::class.java.getResource("/image/icon/icon-tag/icon-tag-18.png")
     private val tagIcon: ImageIcon = ImageIcon(tagIconURL);
@@ -96,7 +114,23 @@ class AssetTreeCellRenderer : DefaultTreeCellRenderer() {
 
                     } else if(asset.type?.type == "LANE") {
                         fieldLabel.foreground = Color.red
-                        fieldLabel.icon = roadIcon
+                        if (asset.key.endsWith("-L1")) {
+                            fieldLabel.icon = roadL1Icon
+                        } else if (asset.key.endsWith("-L2")) {
+                            fieldLabel.icon = roadL2Icon
+                        } else if (asset.key.endsWith("-L3")) {
+                            fieldLabel.icon = roadL3Icon
+                        } else if (asset.key.endsWith("-R1")) {
+                            fieldLabel.icon = roadR1Icon
+                        } else if (asset.key.endsWith("-R2")) {
+                            fieldLabel.icon = roadR2Icon
+                        } else if (asset.key.endsWith("-R3")) {
+                            fieldLabel.icon = roadR3Icon
+                        } else if (asset.key.contains("-R")) {
+                            fieldLabel.icon = roadRxIcon
+                        } else {
+                            fieldLabel.icon = roadLxIcon
+                        }
                     } else {
                         fieldLabel.foreground = Color.blue
                         fieldLabel.icon = roadIcon

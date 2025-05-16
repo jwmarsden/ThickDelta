@@ -76,8 +76,8 @@
 30170,Switchrooms,LOCATION
 30180,Transformer rooms,LOCATION
 30190,Cable spaces,LOCATION
-90000,Carriageway,LINEAR
-90010,Lane,LINEAR
+90000,Motorway Carriageways,LINEAR
+90010,Motorway Lanes,LINEAR
 90100,Road markings,LINEAR_FEATURE
 90110,Road barrier,LINEAR_RELATIONSHIP
 100000,Jet fans,MANAGED_ASSET

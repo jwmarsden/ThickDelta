@@ -1,10 +1,7 @@
 package com.ventia.gui.assetview
 
 import com.ventia.controller.AssetController
-import com.ventia.entity.classification.ClassificationComplexEntity
-import com.ventia.entity.classification.ClassificationComplexEntityLocationEntity
-import com.ventia.entity.classification.ClassificationEntity
-import com.ventia.entity.classification.ClassificationManagedAssetEntity
+import com.ventia.entity.classification.*
 import com.ventia.gui.assetview.intent.AssetSelectedIntent
 import com.ventia.gui.assetview.intent.LocationSelectedIntent
 import com.ventia.gui.assetview.intent.RootSelectedIntent
@@ -101,20 +98,33 @@ class AssetDetailView(private val controller: AssetController): JPanel(), Intent
                     detailsTab.spaceField.text = classification.product?.code
                     detailsTab.spaceFieldDescription.text = classification.product?.title
                 }
-
-
-
-
-
-
             }
         } else if (intent is AssetSelectedIntent) {
             if(intent.asset.classification != null) {
-                detailsTab.titledBorder.title = "Uniclass Asset (Product) Classification"
-
                 val classification: ClassificationEntity = intent.asset.classification
                 detailsTab.classificationDescription.text = classification.toString()
                 detailsTab.classificationPath.text = classification.getPathString()
+                if(classification is ClassificationComplexEntityLocationEntity) {
+
+                    detailsTab.titledBorder.title = "Uniclass Asset (Linear) Classification"
+                    detailsTab.l1Label.text = COMPLEX_LABEL
+                    detailsTab.complexField.text = classification.complex?.code
+                    detailsTab.complexFieldDescription.text = classification.complex?.title
+
+                    detailsTab.l2label.text = ENTITY_LABEL
+                    detailsTab.entityField.text = classification.entity?.code
+                    detailsTab.entityFieldDescription.text = classification.entity?.title
+
+                    detailsTab.l3label.text = SPACE_LOCATION_LABEL
+                    detailsTab.spaceField.text = classification.spaceLocation?.code
+                    detailsTab.spaceFieldDescription.text = classification.spaceLocation?.title
+                } else if (classification is ClassificationAssetEntity) {
+                    detailsTab.titledBorder.title = "Uniclass Asset (Product) Classification"
+                    detailsTab.classificationDescription.text = classification.toString()
+                    detailsTab.classificationPath.text = classification.getPathString()
+                }
+
+
             }
 
         }
