@@ -6,7 +6,7 @@ import org.hibernate.proxy.HibernateProxy
 @Entity
 @SequenceGenerator(name = "type-id-seq", sequenceName = "TYPE_ID_SEQ", initialValue = 20, allocationSize = 10)
 @Table(name = "TYPE")
-data class TypeEntity(
+data class TypeEntity (
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "type-id-seq")

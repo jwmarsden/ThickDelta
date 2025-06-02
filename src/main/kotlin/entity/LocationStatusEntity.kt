@@ -6,7 +6,7 @@ import org.hibernate.proxy.HibernateProxy
 @Entity
 @SequenceGenerator(name = "location_status-id-seq", sequenceName = "LOCATION_STATUS_ID_SEQ", initialValue = 100, allocationSize = 10)
 @Table(name = "LOCATION_STATUS")
-data class LocationStatusEntity(
+data class LocationStatusEntity (
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_status-id-seq")

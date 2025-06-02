@@ -5,7 +5,7 @@ import jakarta.persistence.*
 @Entity
 @SequenceGenerator(name = "asset_status-id-seq", sequenceName = "ASSET_STATUS_ID_SEQ", initialValue = 100, allocationSize = 10)
 @Table(name = "ASSET_STATUS")
-data class AssetStatusEntity(
+data class AssetStatusEntity (
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "asset_status-id-seq")
     @Column(nullable = false)

@@ -7,7 +7,7 @@ import jakarta.persistence.*
 @Table(name = "LOCATION_SYSTEM_HIERARCHY",
     uniqueConstraints=[UniqueConstraint(name= "LOCATION_SYSTEM_HIERARCHY_C01", columnNames = ["SYSTEM_ID", "PARENT_ID","LOCATION_ID"])]
 )
-data class LocationSystemHierarchyEntity(
+data class LocationSystemHierarchyEntity (
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_system_hierarchy-id-seq")

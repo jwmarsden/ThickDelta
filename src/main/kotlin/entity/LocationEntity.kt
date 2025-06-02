@@ -24,7 +24,7 @@ data class LocationEntity (
     @Column(nullable = false, unique = true, length = 12)
     val key: String = "key",
 
-    val description: String? = null,
+    var description: String? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status", referencedColumnName = "status", nullable = false)
@@ -44,6 +44,15 @@ data class LocationEntity (
     @Column(nullable = false, name = "MAINTAINABLE_FLAG", columnDefinition="BOOLEAN DEFAULT FALSE")
     val maintainableFlag: Boolean = false,
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name="parent_id", referencedColumnName = "key")
+    var childrenFromAllSystems: List<LocationSystemHierarchyEntity>? = mutableListOf(),
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    @JoinColumn(name="location_id", referencedColumnName = "key")
+    var parentsFromAllSystems: List<LocationSystemHierarchyEntity>? = mutableListOf(),
+
+    /*
     @ManyToMany(mappedBy = "children", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @SQLJoinTableRestriction("system_id in (select sys.id from system sys where sys.system = 'DEFAULT')")
     val primaryParent: List<LocationEntity> = mutableListOf(),
@@ -55,12 +64,16 @@ data class LocationEntity (
         inverseJoinColumns = [JoinColumn(name = "location_id")],
     )
     val children: List<LocationEntity> = mutableListOf(),
+     */
+    @Transient
+    val children: List<LocationEntity> = mutableListOf(),
 
     @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name="location", referencedColumnName = "key")
     val assets: List<AssetEntity> = mutableListOf(),
 
     ) {
+
 
     val level: Int
         get() {
@@ -99,10 +112,10 @@ data class LocationEntity (
     private fun countLevels(): Int {
         var level = this
         var count = 0
-        while(level.primaryParent.isNotEmpty()) {
-            level = level.primaryParent[0]
-            count++
-        }
+//        while(level.primaryParent.isNotEmpty()) {
+//            level = level.primaryParent[0]
+//            count++
+//        }
         return count
     }
 }
